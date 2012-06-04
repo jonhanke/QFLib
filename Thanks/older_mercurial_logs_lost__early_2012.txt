@@ -1,0 +1,335 @@
+math [qflibrary-code]> hg log
+changeset:   2:9d894ded0788
+tag:         tip
+user:        Jonathan Hanke <jonhanke@gmail.com>
+date:        Mon Jan 16 11:46:00 2012 -0500
+files:       290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/GMP_class_extras/mpz_class_extras.cc
+290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/GMP_class_extras/valarray_extras.h
+290_Project C++:SAGE/C/Ver13.2__3-5-2007/Makefile 290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/Matrix_mpz/Matrix_mpz.h 290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/New_Boolean_Theta_Class/boolean_theta_class__methods.cc
+290_Project C++:SAGE/C/Ver13.2__3-5-2007/Number_Checking/primelist.cc
+290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/Number_Checking/squarefreelist.cc
+290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/XXX__Distributed_Stuff/distributed_class.cc
+290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/XXX__Distributed_Stuff/distributed_class.h
+290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/XXX__Distributed_Stuff/distributed_theta.cc
+290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/XXX__Distributed_Stuff/distributed_theta__client.h
+290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/XXX__Distributed_Stuff/distributed_theta__client2.cc
+290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/XXX__Distributed_Stuff/distributed_theta__client_more.cc
+290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/XXX__Distributed_Stuff/main__multi-slice_client.cc
+290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/XXX__Distributed_Stuff/main__theta-client2.cc
+290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/XXX__Distributed_Stuff/multi-slice_client__more.cc
+290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/XXX__Distributed_Stuff/ternary_theta_client_new
+290_Project C++:SAGE/C/Ver13.2__3-5-2007/main 290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/qf_project_class.cc
+Local/Install_scripts/gmp-5.0.2.sh Local/Tarballs/gmp-5.0.2.tar.bz2
+Local/include/gmp.h Local/include/gmpxx.h Local/lib/libgmp.10.dylib
+Local/lib/libgmp.a Local/lib/libgmp.dylib Local/lib/libgmp.la
+Local/lib/libgmpxx.4.dylib Local/lib/libgmpxx.a
+Local/lib/libgmpxx.dylib Local/lib/libgmpxx.la Local/share/info/dir
+Local/share/info/gmp.info Local/share/info/gmp.info-1
+Local/share/info/gmp.info-2
+description:
+Added GMP libraries and some missing districuted code.  Also fixed
+makefile to allow building of main.cc.
+
+Together with Jacob Hicks! =) Thanks!
+
+
+changeset:   1:f27cd04af07d
+user:        Jonathan Hanke <jonhanke@gmail.com>
+date:        Mon Jan 16 10:07:31 2012 -0500
+files:       .hgignore Local/Install_scripts/clean_install_all.sh
+Local/Install_scripts/delete_all.sh
+Local/Install_scripts/pari-2.1.7.sh
+Local/Install_scripts/pari-2.2.10.alpha.sh
+Local/Install_scripts/pari-2.3.5.sh
+Local/Install_scripts/pari-2.5.0.sh Local/Tarballs/pari-2.1.7.tgz
+Local/Tarballs/pari-2.2.10.alpha.tgz Local/Tarballs/pari-2.3.5.tgz
+Local/Tarballs/pari-2.5.0.tgz Local/bin/gp Local/bin/gp-2.3
+Local/bin/gphelp Local/bin/tex2mail Local/include/pari/genpari.h
+Local/include/pari/pari.h Local/include/pari/paricast.h
+Local/include/pari/paricfg.h Local/include/pari/paricom.h
+Local/include/pari/paridecl.h Local/include/pari/parierr.h
+Local/include/pari/parigen.h Local/include/pari/pariinl.h
+Local/include/pari/parinf.h Local/include/pari/pariold.h
+Local/include/pari/pariport.h Local/include/pari/paripriv.h
+Local/include/pari/paristio.h Local/include/pari/parisys.h
+Local/include/pari/paritune.h Local/include/pari/paritype.h
+Local/lib/libpari.a Local/lib/pari/pari.cfg
+Local/share/emacs/site-lisp/pari/pari-completion.el
+Local/share/emacs/site-lisp/pari/pari-completion.elc
+Local/share/emacs/site-lisp/pari/pari-conf.el
+Local/share/emacs/site-lisp/pari/pari-conf.elc
+Local/share/emacs/site-lisp/pari/pari-fontification.el
+Local/share/emacs/site-lisp/pari/pari-fontification.elc
+Local/share/emacs/site-lisp/pari/pari-help.el
+Local/share/emacs/site-lisp/pari/pari-help.elc
+Local/share/emacs/site-lisp/pari/pari-messages.el
+Local/share/emacs/site-lisp/pari/pari-messages.elc
+Local/share/emacs/site-lisp/pari/pari.el
+Local/share/emacs/site-lisp/pari/pari.elc
+Local/share/emacs/site-lisp/pari/pariemacs.txt
+Local/share/emacs/site-lisp/pari/sli-tools.el
+Local/share/emacs/site-lisp/pari/sli-tools.elc
+Local/share/man/man1/gp-2.3.1 Local/share/man/man1/gp.1
+Local/share/man/man1/gphelp.1 Local/share/man/man1/pari.1
+Local/share/man/man1/tex2mail.1 Local/share/pari/PARI/822.pm
+Local/share/pari/doc/Makefile Local/share/pari/doc/appa.tex
+Local/share/pari/doc/appb.tex Local/share/pari/doc/appc.tex
+Local/share/pari/doc/libpari.dvi Local/share/pari/doc/paricfg.tex
+Local/share/pari/doc/parimacro.tex Local/share/pari/doc/pdfmacs.tex
+Local/share/pari/doc/refcard.dvi Local/share/pari/doc/refcard.ps
+Local/share/pari/doc/refcard.tex Local/share/pari/doc/translations
+Local/share/pari/doc/tutorial.dvi Local/share/pari/doc/tutorial.tex
+Local/share/pari/doc/users.dvi Local/share/pari/doc/users.tex
+Local/share/pari/doc/usersch1.tex Local/share/pari/doc/usersch2.tex
+Local/share/pari/doc/usersch3.tex Local/share/pari/doc/usersch4.tex
+Local/share/pari/doc/usersch5.tex Local/share/pari/examples/EXPLAIN
+Local/share/pari/examples/Inputrc Local/share/pari/examples/Makefile
+Local/share/pari/examples/bench.gp Local/share/pari/examples/cl.gp
+Local/share/pari/examples/classno.gp
+Local/share/pari/examples/contfrac.gp
+Local/share/pari/examples/extgcd.c Local/share/pari/examples/lucas.gp
+Local/share/pari/examples/rho.gp Local/share/pari/examples/squfof.gp
+Local/share/pari/examples/taylor.gp Local/share/pari/misc/README
+Local/share/pari/misc/color.dft Local/share/pari/misc/gpalias
+Local/share/pari/misc/gpflog Local/share/pari/misc/gprc.dft
+Local/share/pari/misc/new.dic Local/share/pari/misc/pari.xpm
+Local/share/pari/misc/xgp Local/share/pari/pari.desc
+description:
+Added Pari Build and Local folder structure (with build files).
+
+This is an old commit from 1/11/2012.
+
+
+changeset:   0:1ff4db7b6f51
+user:        Jonathan Hanke <jonhanke@gmail.com>
+date:        Tue Jan 10 22:59:52 2012 -0500
+files:       .hgignore 290_Project C++:SAGE/C/Current_Version
+290_Project C++:SAGE/C/Current_Version.README 290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/104_auxiliary_quaternaries.txt
+290_Project C++:SAGE/C/Ver13.2__3-5-2007/6560_basic_quaternaries.txt
+290_Project C++:SAGE/C/Ver13.2__3-5-2007/Changelog.txt 290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/Docs/Doxygen_Docs/Doxyfile 290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/Docs/Doxygen_Docs/Doxyfile-mac
+290_Project C++:SAGE/C/Ver13.2__3-5-2007/Explanations/Matrix_mpz.txt
+290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/Explanations/boolean_theta.txt
+290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/Explanations/local_conditions.txt
+290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/Explanations/local_split_coverings.txt
+290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/Explanations/power_series_T.txt
+290_Project C++:SAGE/C/Ver13.2__3-5-2007/Explanations/qf_datafiles.txt
+290_Project C++:SAGE/C/Ver13.2__3-5-2007/Explanations/qf_project.txt
+290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/Explanations/quaternary_exceptions.txt
+290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/Explanations/representability.txt
+290_Project C++:SAGE/C/Ver13.2__3-5-2007/GMP_class_extras/Bernoulli.cc
+290_Project C++:SAGE/C/Ver13.2__3-5-2007/GMP_class_extras/Bernoulli.h
+290_Project C++:SAGE/C/Ver13.2__3-5-2007/GMP_class_extras/mpq_stuff.cc
+290_Project C++:SAGE/C/Ver13.2__3-5-2007/GMP_class_extras/mpq_stuff.h
+290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/GMP_class_extras/mpz_class_extras.cc
+290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/GMP_class_extras/mpz_class_extras.h
+290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/GMP_class_extras/unused_min.cc
+290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/GMP_class_extras/valarray_extras.h
+290_Project C++:SAGE/C/Ver13.2__3-5-2007/GMP_class_extras/vectors.cc
+290_Project C++:SAGE/C/Ver13.2__3-5-2007/GMP_class_extras/vectors.h
+290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/GRID/Duke_SGE_distributed_6560_quaternaries.sh
+290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/GRID/QSUB_TEST__8-9-2005/array_test.sh
+290_Project C++:SAGE/C/Ver13.2__3-5-2007/GRID/cluster.sh 290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/GRID/jobfile_for_form10 290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/GRID/jobfile_for_form11 290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/GRID/jobfile_for_form12 290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/GRID/jobfile_for_form13 290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/GRID/jobfile_for_form14 290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/GRID/make_html_reports.py 290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/GRID/make_reports.py 290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/GRID/run.py 290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/GRID/run.pyc 290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/GRID/run2.py 290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/LCM.cc 290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/LCM.h 290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/LineCounts 290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/Local_Stuff/CountLocalTest.cc 290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/Local_Stuff/LocalNormalTest.cc
+290_Project C++:SAGE/C/Ver13.2__3-5-2007/MAIN_TEST.txt 290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/Makefile 290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/Matrix_mpz/CountLocal.cc 290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/Matrix_mpz/CountLocal2.cc 290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/Matrix_mpz/Eisenstein_Bound.cc
+290_Project C++:SAGE/C/Ver13.2__3-5-2007/Matrix_mpz/Local_Constants.cc
+290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/Matrix_mpz/Local_Density_Congruence.cc
+290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/Matrix_mpz/Local_Density_Front.cc
+290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/Matrix_mpz/Local_Diagnostic.cc
+290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/Matrix_mpz/Local_Invariants.cc
+290_Project C++:SAGE/C/Ver13.2__3-5-2007/Matrix_mpz/Local_Normal.cc
+290_Project C++:SAGE/C/Ver13.2__3-5-2007/Matrix_mpz/Matrix_mpz.cc
+290_Project C++:SAGE/C/Ver13.2__3-5-2007/Matrix_mpz/Matrix_mpz.h
+290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/Matrix_mpz/Matrix_mpz_Extras.cc
+290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/Matrix_mpz/Matrix_mpz_MAIN_TESTS.cc
+290_Project C++:SAGE/C/Ver13.2__3-5-2007/Matrix_mpz/PARI.cc
+290_Project C++:SAGE/C/Ver13.2__3-5-2007/Matrix_mpz/Reduction.cc
+290_Project C++:SAGE/C/Ver13.2__3-5-2007/Matrix_mpz/Siegel_Product.cc
+290_Project C++:SAGE/C/Ver13.2__3-5-2007/Matrix_mpz/Theta.cc
+290_Project C++:SAGE/C/Ver13.2__3-5-2007/Matrix_mpz/Theta.h
+290_Project C++:SAGE/C/Ver13.2__3-5-2007/Matrix_mpz/Theta.ps
+290_Project C++:SAGE/C/Ver13.2__3-5-2007/Matrix_mpz/ooo 290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/Matrix_mpz/pari_junk.cc 290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/Matrix_mpz_Tests__9-18-04/LCM.cc
+290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/Matrix_mpz_Tests__9-18-04/LCM.h
+290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/Matrix_mpz_Tests__9-18-04/Makefile
+290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/Matrix_mpz_Tests__9-18-04/Matrix_main
+290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/Matrix_mpz_Tests__9-18-04/Matrix_mpz.cc
+290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/Matrix_mpz_Tests__9-18-04/Matrix_mpz.h
+290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/Matrix_mpz_Tests__9-18-04/Matrix_mpz_main.cc
+290_Project C++:SAGE/C/Ver13.2__3-5-2007/Misc_Tests.cc 290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/New_Boolean_Theta_Class/TO_DO/TO_DO__Distributed/boolean_theta_class__distributed_methods.cc
+290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/New_Boolean_Theta_Class/TO_DO/TO_DO__Distributed/boolean_theta_class__distributed_methods2.cc
+290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/New_Boolean_Theta_Class/TO_DO/TO_DO__Distributed/boolean_theta_class__distributed_methods_new.cc
+290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/New_Boolean_Theta_Class/TO_DO/boolean_theta_class__tests.cc
+290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/New_Boolean_Theta_Class/boolean_theta_class.cc
+290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/New_Boolean_Theta_Class/boolean_theta_class.h
+290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/New_Boolean_Theta_Class/boolean_theta_class__compute.cc
+290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/New_Boolean_Theta_Class/boolean_theta_class__defn.cc
+290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/New_Boolean_Theta_Class/boolean_theta_class__methods.cc
+290_Project C++:SAGE/C/Ver13.2__3-5-2007/Number_Checking/checking.cc
+290_Project C++:SAGE/C/Ver13.2__3-5-2007/Number_Checking/checking.h
+290_Project C++:SAGE/C/Ver13.2__3-5-2007/Number_Checking/checknums.cc
+290_Project C++:SAGE/C/Ver13.2__3-5-2007/Number_Checking/checknums.h
+290_Project C++:SAGE/C/Ver13.2__3-5-2007/Number_Checking/primelist.cc
+290_Project C++:SAGE/C/Ver13.2__3-5-2007/Number_Checking/primelist.h
+290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/Number_Checking/squarefreelist.cc
+290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/Number_Checking/squarefreelist.h
+290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/Quaternary_Exceptions/Quaternary_Exceptions.cc
+290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/Quaternary_Exceptions/Quaternary_Exceptions.h
+290_Project C++:SAGE/C/Ver13.2__3-5-2007/REQUIREMENTS.txt 290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/Siegel_Diagnostic/read290data.cc
+290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/Siegel_Diagnostic/readseries.cc
+290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/Siegel_Diagnostic/siegel_diagnostic.cc
+290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/Siegel_Diagnostic/siegel_diagnostic.h
+290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/Ternary_Stuff/local_representability.cc
+290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/Ternary_Stuff/local_representability.h
+290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/Ternary_Stuff/new_local_representability.cc
+290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/Ternary_Stuff/new_local_representability.h
+290_Project C++:SAGE/C/Ver13.2__3-5-2007/Ternary_Stuff/scraps3.cc
+290_Project C++:SAGE/C/Ver13.2__3-5-2007/Ternary_Stuff/scraps3.h
+290_Project C++:SAGE/C/Ver13.2__3-5-2007/Unsorted/MatrixTest.cc
+290_Project C++:SAGE/C/Ver13.2__3-5-2007/Unsorted/VectorTest.cc
+290_Project C++:SAGE/C/Ver13.2__3-5-2007/Unsorted/bounds.cc
+290_Project C++:SAGE/C/Ver13.2__3-5-2007/Unsorted/more_constants.cc
+290_Project C++:SAGE/C/Ver13.2__3-5-2007/Utilities/file_utilities.cc
+290_Project C++:SAGE/C/Ver13.2__3-5-2007/Utilities/file_utilities.h
+290_Project C++:SAGE/C/Ver13.2__3-5-2007/Utilities/set_utils.cc
+290_Project C++:SAGE/C/Ver13.2__3-5-2007/Utilities/set_utils.h
+290_Project C++:SAGE/C/Ver13.2__3-5-2007/Utilities/string_utils.cc
+290_Project C++:SAGE/C/Ver13.2__3-5-2007/Utilities/string_utils.h
+290_Project C++:SAGE/C/Ver13.2__3-5-2007/Utilities/vec_utils.cc
+290_Project C++:SAGE/C/Ver13.2__3-5-2007/Utilities/vec_utils.h
+290_Project C++:SAGE/C/Ver13.2__3-5-2007/cholesky_distributed.cc
+290_Project C++:SAGE/C/Ver13.2__3-5-2007/cholesky_distributed.h
+290_Project C++:SAGE/C/Ver13.2__3-5-2007/countit 290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/grid_run2.py 290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/local_checking_stats.cc 290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/local_checking_stats.h 290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/local_condition_class.cc 290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/local_condition_class.h 290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/local_split_coverings_class.cc
+290_Project C++:SAGE/C/Ver13.2__3-5-2007/local_split_coverings_class.h
+290_Project C++:SAGE/C/Ver13.2__3-5-2007/main 290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/main.cc 290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/main_test 290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/main_test.cc 290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/maketheta.cc 290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/max-min.h 290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/misc_utilities.cc 290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/misc_utilities.h 290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/more_scraps.cc 290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/output.cc 290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/output.h 290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/power_series.cc 290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/power_series.h 290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/progress.txt 290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/qf_datafiles_class.cc 290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/qf_datafiles_class.h 290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/qf_project_class.cc 290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/qf_project_class.h 290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/readmagmaseries.cc 290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/representability--new_checksquarefree.cc
+290_Project C++:SAGE/C/Ver13.2__3-5-2007/representability.cc
+290_Project C++:SAGE/C/Ver13.2__3-5-2007/representability.h
+290_Project C++:SAGE/C/Ver13.2__3-5-2007/scraps4.cc 290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/scraps4.h 290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/scraps5.cc 290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/scraps5.h 290_Project
+C++:SAGE/C/Ver13.2__3-5-2007/strict_IO.h 290_Project
+C++:SAGE/Primes/Makefile 290_Project C++:SAGE/Primes/primefile_100.txt
+290_Project C++:SAGE/Primes/primelist_upto_15millionth_prime.txt
+290_Project C++:SAGE/Primes/primelist_upto_40millionth_prime.txt
+290_Project C++:SAGE/Primes/primes_lt_100.txt 290_Project
+C++:SAGE/Primes/primes_lt_100000.txt 290_Project
+C++:SAGE/Primes/primes_lt_1000000.txt 290_Project
+C++:SAGE/Primes/sieve 290_Project C++:SAGE/Primes/sieve2310_64bit.c
+290_Project
+C++:SAGE/QF_Project_Data/__Temp_MAGMA_Computations/Magma_Client_Scripts/__Make_Magma_Eisenstein_Series.m
+290_Project
+C++:SAGE/QF_Project_Data/__Temp_MAGMA_Computations/Magma_Client_Scripts/__Make_Magma_Theta_Series.m
+Python_Files/Datafiles/Python_Datafiles/290-cusp-all.py
+Python_Files/Datafiles/Python_Datafiles/MND.py
+Python_Files/Datafiles/Python_Datafiles/e4r.py
+description:
+Initial commit of a cleaned version of the QFLib C++ code, based on
+Ver13.2__3-5-2007.
