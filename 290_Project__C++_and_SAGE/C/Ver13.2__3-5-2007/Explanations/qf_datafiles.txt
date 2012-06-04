@@ -1,0 +1,9 @@
+
+
+QF_Datafiles class:
+===================
+
+This class keeps track of the folders where all persistent
+computations are stored, and provides some convenient for clearing
+them.  This is inherited by the QF_Project class, which actually
+writes files to these folders.

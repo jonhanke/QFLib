@@ -1,0 +1,39 @@
+
+#!/bin/bash
+#
+## Use the BASH shell for this script
+#$ -S /bin/bash
+
+
+## Set the name of the job  (i.e. $JOB_NAME)
+#$ -N _290_Project__6560_Quaternaries___Form
+
+
+## Set the output file path
+#$ -o _290_basic_quaternary_output__Form14
+
+
+## Send me mail when a job aborts
+#$ -M jonhanke@math.duke.edu
+### -m e
+
+
+# Make sure that the .e and .o file arrive in the
+#working directory
+#$ -cwd
+#
+# Merge the standard out and standard error to one file
+#$ -j y
+#
+# My code is re-runnable
+#$ -r y
+
+
+export LD_LIBRARY_PATH=/usr/local/lib:/home/postdoc/jonhanke/bin/Installed_Software/LOCAL/lib
+
+echo " Submitting job #$SGE_TASK_ID at $(date)."
+echo
+echo ' This is task #'$SGE_TASK_ID
+../main 290_Project__Basic_Quaternary_Escalators__11-2-06 primelist_upto_15millionth_prime.txt 290_Project__Basic_Quaternary_Escalators__form_list.txt Basic_Constants Basic_const_ 14 >> Basic_C++_Output_Logs/Form14.txt
+echo
+echo " Finished submitting job #$SGE_TASK_ID at $(date)."

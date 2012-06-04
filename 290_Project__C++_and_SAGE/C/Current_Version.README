@@ -1,0 +1,5 @@
+
+Current_Version is a symlink to the current version "VerXX__XX-XX-XX" 
+  of my quadratic forms code! =)
+
+ln -s Ver13.2__3-5-2007 Current_Version 

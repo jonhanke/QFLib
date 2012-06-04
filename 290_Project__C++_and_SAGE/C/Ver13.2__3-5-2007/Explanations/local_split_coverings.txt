@@ -1,0 +1,37 @@
+
+LocalSplitCoverings class:
+==========================
+
+This class computes and stores a list minimal local split coverings of
+a positive definite quaternary quadratic form Q, by which we mean a pair
+(d, T) of a number (unary form) d and a ternary form T whose
+orthogonal sum agrees with the Q on some sublattice and has the same
+local conditions as Q.   The statement of being minimal means that d
+is incrementally chosen to be as small as possible.  (These local split
+coverings are very useful for quickly checking representability of
+large numbers Q.  See XXX for more details.)
+
+      Quaternary info:
+      ----------------
+        Big_Form -- returns Q
+	Big_Local -- gives the local conditions of Q
+
+      Covering info:
+      --------------
+        multiplicity() -- gives the number of covers currently known
+        Get_Form (cover_number, form_number) -- returns the ternary T for this cover
+	Get_Value (cover_number, form_number) -- returns the number d for this cover
+	Get_Local_Conditions (cover_number, form_number) -- returns the local conditions for the pair (d,T)
+	size(i) -- This say how many pairs are used in the i-th cover,
+		   which should always be 1.
+
+      Misc:
+      -----
+	IncrementLocalSplitCoverings() -- adds the next smallest split cover to the list
+
+
+Note: These were originally set up to use several split sublattices
+whose local conditions collectively agree with Q (i.e. every number
+locally represented by Q is locally represented by at least one pair
+(d,T)), but we found that one form always sufficed.  Therefore the
+"form_number" above is always taken to be 1.

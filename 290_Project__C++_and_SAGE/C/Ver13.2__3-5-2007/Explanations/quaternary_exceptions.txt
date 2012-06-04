@@ -1,0 +1,11 @@
+
+QuaternaryExceptions class:
+===========================
+
+This class finds all exceptions < X of a (positive definite) quaternary
+quadratic form Q by comparison with the theta function of Q.  It can
+also take a set of numbers (possible exceptions), and say which of
+them are exceptions. 
+
+Note: This class still needs to be cleaned up, and originally used
+several methods (Jagy's method also) for finding large exceptions. 

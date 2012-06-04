@@ -1,0 +1,41 @@
+
+LocalConditions class:
+=======================
+
+This class finds the local conditions for a number to be integrally
+represented by a quadratic form.  These conditions are computed in the
+constructor, and consist of a 9 element vector for each prime with a
+local obstruction (though only the first 5 are meaningful unless p=2).
+The first element is always the prime p where the local obstruction
+occurs, and the next 8 (or 4) entries represent square-classes in the
+p-adic integers Z_p, and are labeled by the Q_p square-classes
+t*(Q_p)^2 with t given as follows: 
+
+	p > 2  ==>  [ *  1  u  p  up  *  *  *  * ]
+
+	p = 2  ==>  [ *  1  3  5  7  2  6  10  14 ]
+
+The integer appearing in each place tells us how p-divisible a
+number needs to be in that square-class in order to be locally
+represented by Q.  A negative number indicates that the entire Q_p
+square-class is not represented, while a positive number x indicates
+that t*p^(2*x) (Z_p)^2 is locally represented but t*p^(2*(x-1))
+(Z_p)^2 is not.
+
+As an example, the vector
+
+       [2  3  0  0  0  0  2  0  -1]
+
+tells us that all positive integers are locally represented at p=2
+except those of the forms:
+  
+	2^6 * u * r^2  with u = 1 (mod 8)
+
+	2^5 * u * r^2  with u = 3 (mod 8)
+
+	2 * u * r^2  with u = 7 (mod 8)
+
+
+Note: There is currently not support for checking representability
+at the real place (i.e. if the form is definite/indefinite).
+

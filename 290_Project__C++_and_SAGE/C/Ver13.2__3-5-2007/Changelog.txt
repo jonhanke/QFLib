@@ -1,0 +1,11 @@
+
+8/17/04:
+--------
+
+	- Installed several documentation tools: code2html, ctoohtml,
+          and Doxygen.  Doxygen requires graphviz to make graphs.
+          These were used to make sample documentation in
+          subdirectories of the "Docs" directory.  In the end, Doxygen
+          is the best choice, by a long way! =)
+
+	- 

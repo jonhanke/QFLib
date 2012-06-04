@@ -1,0 +1,12 @@
+
+Representability class:
+=======================
+
+This class is where most of the other code comes together to find
+*all* exceptions of a positive definite integer-valued quadratic form
+in 4 variables.  While its inner-workings are complicated and embody
+the general "analytic method" for finding all exceptions, it has only
+a constructor and a GetExceptions() method, which returns the vector
+of exceptions. 
+
+y

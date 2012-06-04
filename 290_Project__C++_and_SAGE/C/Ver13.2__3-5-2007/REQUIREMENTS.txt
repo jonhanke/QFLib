@@ -1,0 +1,42 @@
+
+
+
+============================================================================================================
+
+From main.cc:
+-------------
+
+// Says where the list of primes are stored
+const char PRIME_DIR[] = "/home/postdoc/jonhanke/290_Project/Primes/";
+
+// Says where the project is stored
+//const char ABSOLUTE_PROJECT_PATH[] = "/ytmp/QF_Project_Data/";   // This is for Austin and grid
+extern const char ABSOLUTE_PROJECT_PATH[23] = "/ztmp/QF_Project_Data/";   // This is for the gridX machines
+
+
+// Read the command line arguments:
+  //      0 = "./main"??
+  //      1 = project_name
+  //      2 = prime_list
+  //      3 = form_file
+  //      4 = Cusp_Const_Dir
+  //      5 = cusp_const_prefix
+  //      6 = form_number
+  //      7 = form_number (optional -- last one in a range if it's
+  included)
+  cout << " We read " << argc << " command line arguments! ";
+  assert((argc == 7) || (argc == 8));
+
+
+
+ // Set the file with all of the primes:
+  // ------------------------------------
+  //prime_file = "primes_lt_1000000.txt";
+  //prime_file = "primelist_upto_15millionth_prime.txt";
+  //prime_file = "primelist_upto_40millionth_prime.txt";
+  string prime_file = CL_prime_filename;   // Get the filename from the command line! =)
+
+  // Define the project
+  QF_Project My_Project(command_line_project_name, CL_form_filename, CL_cusp_const_dir, CL_cusp_const_prefix, Excluded_Forms);
+
+============================================================================================================

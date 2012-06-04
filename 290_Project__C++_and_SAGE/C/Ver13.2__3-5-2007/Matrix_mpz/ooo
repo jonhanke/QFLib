@@ -1,0 +1,197 @@
+
+
+// Compute the theta function by importing (and simplifying) the original PARI code!
+boolean_theta Theta_PARI_2_new_Approximate(const Matrix_mpz & Q, const mpz_class & precision, const float & approx_size) {
+
+  // Make the theta series, and set zero.
+  boolean_theta Theta_Series(Q, precision);    // WARNING: This assumes the precision of half of the maximum allowed!  
+  Theta_Series.set_value(0);
+  
+  // Note: We assume that pari_init(...) was run at the beginning of the program!
+  extern pari_sp avma;
+
+  // PARI Stack placeholder
+  pari_sp av0 = avma;
+  
+  
+  // Make an array of double for the Cholesky decompostion of our matrix
+  GEN A = Matrix_mpz__to__PARI(Q);
+  
+  // Compute the LLL Basis for A
+  GEN U = lllgramint(A);
+  /*
+    // DIAGNSOTIC:
+    cout << " lg(U) = " << lg(U) << endl;
+    cout << " Q.NumRows() = " << Q.NumRows() << endl;
+  */
+  if (lg(U) != Q.NumRows()+1) 
+    err(talker, "Dude, your matrix is not positive definite! =(");
+  
+  // Put A in LLL reduced form
+  //A = U^T * A * U
+  A = qf_base_change(A,U,1);
+  cout << " The LLL reduction of this matrix is given by:" << endl;
+  outmat(A);
+  
+  // Compute the Cholesky decomposition of A
+  GEN R = sqred(A);
+
+
+
+
+  // --------------------------------------------
+
+
+  // Delare some local variables
+  long n = Q.NumRows(), i, j, k;
+  double p, BOUND, eps = 0.000001;
+  BOUND =  2 * precision.get_d() + eps; 
+
+
+  // Convert R into doubles...
+  vector<long> x(n+1);      // Note: This is ok as long since it maxes out at 2 * 10^9, which gives precision at least 4 * 10^18! =)
+  vector<double> v(n+1), y(n+1), z(n+1);
+  vector< vector <double> > q(n+1);
+  for(long i=1; i<=n; i++)
+    q[i].resize(n+1);
+
+
+  /*
+  // DIAGNSOTIC:
+  cout << "Starting the conversion..." << endl;
+  output(R);
+  cout << " n = " << n << endl;
+  */
+
+  // Set v and q
+  for(long i=1; i<=n; i++)
+    v[i] = gtodouble(gcoeff(R,i,i));
+  for(long i=1; i<=n; i++)
+    for(long j=i+1; j<=n; j++) {      
+      q[i][j] = gtodouble(gcoeff(R,i,j));
+      //cout << "Q[" << i << "][" << j << "] = " << q[i][j] << endl;
+    }
+
+
+  /*
+  // DIAGNSOTIC:
+  cout << " v = " << v << endl;
+  cout << " q = " << q << endl;
+  */
+
+
+
+  // Reset the PARI stack
+  avma = av0;
+
+
+
+  /*
+  // DIAGNOSTIC
+  cout << " Precision = " << precision << endl;  // WARNING: This is a unsigned long, so its biggest value is about 4.2 * 10^9 !
+  cout << " BOUND = " << BOUND << endl;
+  */
+
+
+
+  // Check for a precision overflow (10^12)
+  mpz_class THOUSAND(1000);
+  mpz_class PRECISON_OVERFLOW = THOUSAND * THOUSAND * THOUSAND * THOUSAND;
+  assert( precision <= PRECISON_OVERFLOW);    // THIS NEEDS TO BE MODIFIED TO DECIDE THE CORRECT CUTOFF!! =)
+
+
+
+  
+  // Set some bounds before starting the main loop
+  float APPROX_SIZE = approx_size;                              // THIS DETERMINES THE AMOUNT WE TRUNCATE IN THE APPROXIMATE ROUTINE! (Default = 500.)
+  k = n; y[n] = z[n] = 0;
+  x[n] = (long) ceil(sqrt(BOUND/v[n]));
+
+  //   /*
+  // DIAGNOSTIC
+  cout << " BOUND/v[n] = " << BOUND/v[n] << endl;
+  cout << " sqrt(BOUND/v[n]) = " << sqrt(BOUND/v[n]) << endl;
+  cout << " ceil(sqrt(BOUND/v[n])) = " << ceil(sqrt(BOUND/v[n])) << endl;
+  cout << " (long) ceil(sqrt(BOUND/v[n])) = " << ((long) ceil(sqrt(BOUND/v[n]))) << endl;
+  //   */
+
+  
+
+  // Compute the theta function
+  for(;;x[1]--)
+  {
+    // DIAGNOSTIC
+    cout << " Using x[1] = " << x[1] << endl;
+    cout << " Using x = " << x << endl;
+    PrintTime();
+    
+    do
+    {
+      /*
+      cout << " x = " << x << endl;
+      */
+
+      // Set more components of x, and the auxilliary y and z.
+      if (k>1)
+      {
+        long l = k-1;
+
+	z[l] = 0;
+	for (j=k; j<=n; j++) z[l] += q[l][j]*x[j];
+
+	p = (double) x[k] + z[k];
+	y[l] = y[k] + p*p*v[k];
+
+	x[l] = (long) min( floor(sqrt((BOUND-y[l])/v[l])-z[l]), APPROX_SIZE-z[l] );     // THIS MAKES IT APPROXIMATE FROM ABOVE!!!
+        k = l;
+      }
+
+      // Check that so far the partial Q(x) is small enough
+      for(;;)
+      {
+	p = (double) x[k] + z[k];
+	if ( (k == n) || ( (k != n) && (p >= -APPROX_SIZE) ) )              // THIS MAKES IT APPROXIMATE FROM BELOW!!!
+	  if (y[k] + p*p*v[k] <= BOUND) break;
+	k++; x[k]--;
+      }
+      
+    }
+    while (k > 1);
+    
+
+    // Here we have a valid vector x, with Q(x) <= precision 
+    if (! x[1] && y[1]<=eps) break;
+
+
+    // Compute Q(x)
+    p = (double) x[1] + z[1]; 
+    p = y[1] + p*p*v[1];   
+
+
+    // SANITY (parity) CHECK 
+    // Check to see if the roundoff error is enough to make an odd number.
+    // (This should detect roughly half of the roundoff errors!)
+    mpz_class even_testnum = mpz_class(p + 0.5);
+    assert(even_testnum % 2 == 0);
+
+
+    // Set the entry in our Theta_Series
+    //    cout << " About to set the value for p = " << p << endl; 
+    mpz_class norm = mpz_class(p/2 + 0.5);        // This does the appropriate rounding! =)
+    //    cout << " Converted p/2 into the number norm = " << norm << endl;
+    Theta_Series.set_value(norm);
+    /*
+    cout << " Finished setting the index for ThetaSeries[" << norm << "]" << endl;
+    cout << endl << endl;
+    */
+
+    // NICE SANITY CHECK FOR LARGE NUMBERS: We could test each p to make sure it's even! =)
+
+  }
+
+
+  return Theta_Series;
+
+}
+
+

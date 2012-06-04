@@ -1,0 +1,226 @@
+
+
+10/28/04:
+---------
+  - Fixed bug in Representability::_NewestCheckNumbers() which causes
+      an out of range error from using the wrong indexing variable. 
+  - Cleaned up the output.
+  - Made Representability::_MakeTernaryThetas() smarter by trying to
+      read the theta function first! =)
+  - Added the numerical Eisenstein bound sanity check to
+      Representability::_GetF4Bound().
+  - Added an (optional) way of passing in the cuspidal constant to the
+      Representability constructor, so we have the correct F4 bounds! =)
+  - Changed the default precision for the numerical Eisenstein lower
+      bound from 10,000 to 1,000 for a faster check. (It took about 30
+      seconds to check the first 10,000 coefficients with adjustments...)
+
+11/8/04:
+--------
+  - Added a loop to run through all forms with F4_bound < 2000. 
+      (Note: this excludes 2 forms, with bounds 3023.2 and 8232.13.)
+      The overflow condition is checked in the Representability
+      class! =)
+  - Added a list to keep track of these overflows.
+  - Added a list to aggregate the exceptions (for the non-overflow forms).
+  - Fixed an mpq_class -> mpz_class truncation bug in
+      _new_C4_rational() which was introduced when correcting the
+      determinant for using the matrix 2Q instead of Q.
+  - Created local_score_class to fix some problems with the current
+      (numerical) scoring system for choosing the forms with the best
+      local conditions, and modified the local conditions routines to
+      use this.
+  - Fixed a subtle bug in the minimal local covering routine which
+      caused it to forget about all but the last condition when
+      looking for a minimal covering! =)
+  - Set the program to check all (non-overflow) forms from 1--6560
+      overnight... =)
+
+
+11/9/04:
+--------
+   - Moved the temporary LocalConditions variable used to compute the
+       local covering inside the loop to create clean initial conditions.
+   - Fixed a primelist overflow bug when finding the level primes in
+       LocalConditions::Make().
+ ** To Do: This prime-finding should be separated out as a separate
+ routine... could also improve it by dividing out known factors... =)
+
+
+11/10/04:
+---------
+    - Fixed a bug in LocalConditions::Make() which used a long to
+        describe elements of a squareclass, and would overflow for
+	very large powers of p.  Now both m and p are type
+	mpz_class. Also made the condition for stopping more efficient. =)
+
+
+11/11/04:
+---------
+    - Fixed a bug in the prime list overflow condition on
+    LocalConditions::Make() to make it less stringent (now we use the
+    first 1,000 primes instead of the first 100 primes).  This should
+    fix the error when finding the local cover of form #354.
+
+
+11/12/04:
+---------
+    - Created a new QF_Project class to organize the data directories
+    by project! =)
+    - Moved the "File_Exists()" routine from
+    Boolean_Theta_Class/boolean_theta_class__distributed_methods2.cc
+    to file_utils.cc, and added "Directory_Exists()" and
+    "Get_Absolute_Path()" routines. 
+    - Added the Siegel_Diagnostic Directory to the Doxygen search
+    path. 
+    - 
+
+11/13/04:
+---------
+    - Working on finishing the QF_Project class, and got it to
+    compile! =)
+    - Ported the .... to QF_Project::FindExceptions().
+
+
+11/14/04:
+---------
+    - Changed Matrix_mpz::EisensteinLowerBound() to take a filename,
+      and keep persistent data. (Now it's GetEisensteinLowerBound().)
+    - Added a Matrix_mpz::QF_String() routine for easy form filename
+      generation, and modified several of the datafile routines to use
+      it! =)   
+    - Separated the QF_Project class into that and a QF_Datafiles
+      class, to separate the forms and the folders.  We will pass the
+      QF_Datafiles to our persistent data routines!
+    - Made the Utilities/string_utils.cc file which converts several
+      numeric types to type string.
+    - Finished going through all Representatbility routines to allow
+      them to use the new QF_Datafile class.
+    - Compiled and tested it for forms #1--88 in about 2 hours 10 min.
+    - Wrote strict File Input/Output routines for:
+	    vector<T>      --  in output.h/cc
+	    Matrix_mpz     
+	    Local Conditions
+      which are inverses of each other! =)
+    - Ran the program overnight, and in 12 1/3 hours it checked the
+      first 400 forms, and found no square-free exceptions! =)
+
+
+11/15/04:
+---------
+    - Added output for the running totals for the squarefree exception
+    list of a project. 
+    - Changed it to write the square-free exceptions even if the cusp
+    constant is zero!
+    - Started writing the strict File I/O routines for the 
+    LocalSplitCover class, but got stuck with the inheritance...
+    - Modified Boolean_Ternary_Theta class to a Boolean_Theta class
+    which takes any Matrix_mpz.
+    - Fixed a bug in Boolean_Ternary_Theta::compute() which mistakenly
+    didn't use the previously computed Cholesky decomposition.
+    - Moved CholeskyDecomposition() to a Matrix_mpz method.
+    - Moved "Boolean_Theta_Class/" dir and files to the more
+    appropriately named "Boolean_Ternary_Theta_Class/".
+    - Finished the File I/O routines, both for STL classes/types and
+    for custom classes.
+    - Added persistence for the LocalSplitCover, and tested it! =)
+    - Saved a lot of time in Representability::_ThetaPrecision() by
+    adding a check for when the character is trivial. =)
+
+
+11/16/04:
+---------
+    - Added a check for pre-computed (squarefree) exceptions in the
+    Representability::_Make() method by making a _ReadSquarefree()
+    method. 
+    - Think about how to organize the Theta function computations, the
+    boolean_theta class, and mulitple remote Magma calls simultaneously.
+
+
+11/17/04:
+---------
+    - Added a MakeUniqueFilename() to Utilities/string_utils.h/cc.  
+    - Rewrote the Magma interface in Matrix_mpz to give unique
+    intermediate filenames, and to be useable to compute other things
+    (besides Eisenstein series) with Magma! =)
+    - Tested it using CheckSiegelRange, which now uses _GetEisSeries()
+    instead of _GetEisData()!
+    - Added a _GetThetaSeries() method to Matrix_mpz.
+    - Fixed several bugs in Matrix_mpz::ComputeTheta and
+    CholeskyDecomposition, most notably, giving a return value!
+    - Fixed a bug in PowerSeries::operator[] which didn't return by
+    reference, or have a non-const version! =)
+    - Wrote Matrix_mpz::Check_ComputeTheta_vs_MagmaTheta() to compare
+    the two routines, and they check out! =)
+    - Deleted the flawed << routine for vector< vector<T> >  from
+    output.h.
+
+
+11/18/04:
+---------
+    - Started writing Matrix_mpz::TernaryExceptionsUpTo()
+
+
+11/19/04:
+---------
+    - Cleaned up the LocalConditions class by:
+	  - Making the Get...() methods const.
+	  - Making Cleanup() private.
+          - Keeping track of the meaninglessness of aniso_vec &
+	  local_repn_array with a flag.
+    - Wrote the Matrix_mpz::MakeNiceLocalModulus() routine.
+
+
+
+
+
+1/9-10/05:
+----------
+    - Created Version 11 and updated the symlinks and .bashrc
+    shortcut.  Also fixed some minor problems so it compiles.
+    - Moved Matrix_mpz/Ternary_Exceptions.* to its own class
+    TernaryExceptions.  
+    - Finished and tested the Jagy-style exception finding. (Stage I)  
+    - Added operator<< for set<T> type in file "output.h".
+    - Fixed the sign of Matrix_mpz::Adjoint (was always backwards!).
+    - Looking for a mysterious segfault.
+
+1/11/05:
+--------
+    - Isolated the segfault from assigning mpq_class(a,b) (where
+    mpz_class a,b are defined as 9 and -14) to a previously declared
+    mpq_class, but on two different lines. =(
+    - Added the Ternary_Exceptions_Dir to the QF_Datafile class.
+    - Added a constructor to TernaryExceptions which accepts
+    persistent datafiles.
+    - Write a routine to verify the ternary exceptions agree with the
+    Magma theta function.   
+    - Tried to test, but Magma was unhappy since I tested with an
+    indefinite ternary... =(
+
+1/12/05:
+--------
+     - Tested the ternary exceptions routine on x^2 + y^2 + z^2, and
+     another form, and both the exception and verying routines work! =)
+     - Implemented the the file I/O routines which allow for
+     persistent data storage/retrieval. =)
+     - Did some time estimates to see what the best bunch size is.  It
+     seems that smaller is better!
+     - Made a Time() routine, and put PrintTime() in a more reasonable
+     place (misc_utilities.h/cc).
+     - Tested the persistence of the I/O routines, which seem to work
+     well! =)
+
+1/13/05:
+--------
+     - Added a separate bunchsize for automatic saving (not as often). =)
+     - Decided on a checking scheme based on finding a uniform local
+     cover (with smallest vector length).
+
+1/14/05:
+--------
+     - Moved _FindLocalSplitCover() to _FindMinimalLocalSplitCover().
+     - Wrote the _FindUniformLocalSplitCover() routine... still
+     writing the math...
+     
+

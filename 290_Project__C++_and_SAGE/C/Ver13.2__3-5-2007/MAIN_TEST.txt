@@ -1,0 +1,36 @@
+
+Command-line invocation for testing the first 5 Auxiliary forms:
+-----------------------------------------------------------------
+./main_test aux_test_project primelist_upto_15millionth_prime.txt
+	    104_auxiliary_quaternaries.txt Auxiliary_Constants Aux_const_ 1 5 
+
+
+
+
+
+=========================================================================================
+
+Command Line Descriptions:
+==========================
+Project Name = aux_test_project
+Prime Filename = primelist_upto_15millionth_prime.txt
+Form Filename = 104_auxiliary_quaternaries.txt
+Cusp Constant Dir = Auxiliary_Constants
+cusp_const_prefix = Aux_const_
+Starting Form # = 1
+Ending Form # (optional) = 1  
+
+
+Directory Descriptions:
+=======================
+Hardcoded_Prime_Dir = /home/postdoc/jonhanke/290_Project/Primes/
+Hardcoded_Project_Dir = /ztmp/QF_Project_Data/
+
+===========================================================================================
+
+Requirements:
+=============
+    - The hardcoded directories must exist for this to run!
+    - The hardcoded project directory must have the following 3 MAGMA
+        scripts installed in a subdirectory:
+	/ztmp/QF_Project_Data/__Temp_MAGMA_Computations/Magma_Client_Scripts/__Make_Magma_Eisenstein_Series.m

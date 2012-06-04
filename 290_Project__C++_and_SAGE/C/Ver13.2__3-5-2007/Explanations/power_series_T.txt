@@ -1,0 +1,11 @@
+
+PowerSeries<T> class:
+=====================
+
+This is a fairly generic power series class which makes power series
+of any type T, and does basic arithmetic, coefficient operations,
+comparison, and file I/O.  The precision is defined in the
+constructor, which is either explicitly given, or comes from a the
+size of the vector of coefficients.
+
+

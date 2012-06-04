@@ -1,0 +1,11 @@
+
+QF_Project class:
+=================
+
+This class finds the individual and common exceptions of a list of
+forms, which are stored in a datafile together wtih the relevant cusp
+constants for their theta functions.  The constructor takes a project
+name (which defines an individual project folder), a formfilename
+(which has a list of forms and their cusp constants), and a set of
+form numbers describing forms to ignore (nubmered from 1 in the order
+given in the form file).    

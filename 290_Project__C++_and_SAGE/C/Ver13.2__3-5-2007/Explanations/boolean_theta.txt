@@ -1,0 +1,31 @@
+
+boolean_theta class:
+====================
+
+This class holds the boolean theta function for a quadratic form,
+which is essentially a large vector of bits indexed by numbers, where
+a 1 in the m-th bit tells us that m is definitely represented by Q.  
+
+There are 2 kinds of theta functions we consider:
+
+      1) Exact theta functions -- these arise from processing a
+         genuine theta series, and are kept in this format to save
+         space.  Here the m-th bit tells us exactly whether m is or
+         isn't represented by Q.
+
+      2) Approximate theta functions -- these are computed to
+         precision X in about sqrt(X) time, but are only give a
+         reliable answer when the m-th bit is 1 (in which case m is
+         definitely represented.  This method works by evaluating the
+         quadratic form on all vectors in a thin cylinder within the
+         full ellipsoid, but is very reliable so long as the cylinder
+         is chosen to be wide enough.
+
+However, this class does not currently perform these computations,
+which are done in Matrix_mpz/Theta.cc, though they probably should be
+moved here! 
+
+Currently this class can set/unset bits, compare two boolean theta
+functions, has basic read/write capability, and can import a Magma
+theta function (i.e. power series in q) which gets automatically
+converted to the boolean format.

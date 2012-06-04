@@ -1,0 +1,52 @@
+syntax: glob
+
+## ==========================================================
+## Below we will describe files that Mercurial should ignore 
+## when updating the repository.
+## ==========================================================
+
+# Backup files left behing by the Emacs editor
+*~
+
+# Lock files used by the Emacs editor
+\#*
+.\#*
+
+# Temporary files used by the vim editor
+.*.swp
+
+# A hidden file created by the Mac OS X Finder
+.DS_Store
+
+# Object files made from compiling C/C++ source code
+*.o
+
+## ---------------------------------------------------------
+
+# Hide Doxygen output files, but not the setup files
+*/Docs/Doxygen_Docs/html/*
+*/Docs/Doxygen_Docs/latex/*
+
+# Hide the output files from previous computations
+*/Basic_Constants/Basic_const_*.txt
+*/Auxiliary_Constants/Aux_const_*.txt
+*/GRID/OUTPUT_LOGS/*
+*/GRID/Basic_C++_Output_Logs/*
+*/GRID/_290_basic_quaternary_output__Form*
+
+# Hide all build folders
+*/Builds/*
+
+# Hide the large prime list files
+*/Primes/primelist_upto_*
+
+# Hide the Local directory information that is not an install file or a source tarball
+*Local/bin/*
+*Local/include/*
+*Local/lib/*
+*Local/share/*
+
+# Hide the unused source tarballs
+*Local/Tarballs/pari-2.1.7.tgz
+*Local/Tarballs/pari-2.2.10.alpha.tgz
+*Local/Tarballs/pari-2.5.0.tgz

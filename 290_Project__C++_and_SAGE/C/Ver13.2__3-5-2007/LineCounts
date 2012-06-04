@@ -1,0 +1,82 @@
+=== . ===
+ 11884  46095 349463 total
+=== ./Docs ===
+  447  2087 14348 checking.cc
+=== ./Docs/code2html_Docs ===
+  447  2087 14348 checking.cc
+=== ./GMP_class_extras ===
+  980  2726 22558 total
+=== ./Local_Stuff ===
+ 236  984 5694 total
+=== ./Matrix_mpz ===
+  7898  30731 212454 total
+=== ./Matrix_mpz_Tests__9-18-04 ===
+ 1210  4190 27692 total
+=== ./New_Boolean_Theta_Class ===
+  874  3545 24584 total
+=== ./New_Boolean_Theta_Class/TO_DO ===
+ 248  835 6760 boolean_theta_class__tests.cc
+=== ./New_Boolean_Theta_Class/TO_DO/TO_DO__Distributed ===
+ 1869  6867 52817 total
+=== ./Number_Checking ===
+ 2001  8725 62337 total
+=== ./Quaternary_Exceptions ===
+ 1015  5134 32013 Quaternary_Exceptions.cc
+=== ./Siegel_Diagnostic ===
+  589  2186 14096 total
+=== ./Ternary_Stuff ===
+ 1546  8295 54191 total
+=== ./Unsorted ===
+  994  3730 27182 total
+=== ./Utilities ===
+ 377 1045 7304 total
+=== ./XXX_UNUSED ===
+  5130  20143 148766 total
+=== ./XXX_UNUSED/Boolean_Ternary_Theta_Class ===
+ 2842 10791 80380 total
+=== ./XXX_UNUSED/Boolean_Ternary_Theta_Class/Attic ===
+ 2882 10863 80925 total
+=== ./XXX_UNUSED/Old ===
+ 2445 10353 71593 total
+=== ./XXX_UNUSED/Ternary_Exceptions ===
+  646  2903 19978 Ternary_Exceptions.cc
+=== ./XXX_UNUSED/Version_XXIV__7-29-04 ===
+  7242  26396 188909 total
+=== ./XXX_UNUSED/Version_XXIV__7-29-04/Classes ===
+  867  2788 18637 total
+=== ./XXX_UNUSED/Version_XXIV__7-29-04/Classes/OLD ===
+ 45 117 836 valarray_extras_old.cc
+=== ./XXX_UNUSED/Version_XXIV__7-29-04/Classes/Unused ===
+ 148  401 2408 total
+=== ./XXX_UNUSED/Version_XXVII__9-24-04 ===
+ 1717  6104 44822 total
+=== ./XXX_UNUSED/Version_XXVII__9-24-04/Classes ===
+ 26  55 390 LCM.cc
+=== ./XXX_UNUSED/Version_XXVII__9-24-04/Classes/Matrix___IN_PROGRESS ===
+ 1729  5405 36284 total
+=== ./XXX_UNUSED/Version_XXVII__9-24-04/Classes/OLD ===
+ 45 117 836 valarray_extras_old.cc
+=== ./XXX_UNUSED/Version_XXVII__9-24-04/Classes/Unused ===
+ 148  401 2408 total
+=== ./XXX_UNUSED/Version_XXVI__9-9-04 ===
+  7245  26398 188949 total
+=== ./XXX_UNUSED/Version_XXVI__9-9-04/Classes ===
+ 1630  5372 36115 total
+=== ./XXX_UNUSED/Version_XXVI__9-9-04/Classes/Matrix___IN_PROGRESS ===
+ 1729  5405 36284 total
+=== ./XXX_UNUSED/Version_XXVI__9-9-04/Classes/OLD ===
+ 45 117 836 valarray_extras_old.cc
+=== ./XXX_UNUSED/Version_XXVI__9-9-04/Classes/Unused ===
+ 148  401 2408 total
+=== ./XXX_UNUSED/Version_XXV__8-20-04 ===
+  7242  26396 188909 total
+=== ./XXX_UNUSED/Version_XXV__8-20-04/Classes ===
+  867  2788 18637 total
+=== ./XXX_UNUSED/Version_XXV__8-20-04/Classes/Matrix___IN_PROGRESS ===
+ 1729  5405 36284 total
+=== ./XXX_UNUSED/Version_XXV__8-20-04/Classes/OLD ===
+ 45 117 836 valarray_extras_old.cc
+=== ./XXX_UNUSED/Version_XXV__8-20-04/Classes/Unused ===
+ 148  401 2408 total
+=== ./XXX__Distributed_Stuff ===
+ 1802  6915 49481 total

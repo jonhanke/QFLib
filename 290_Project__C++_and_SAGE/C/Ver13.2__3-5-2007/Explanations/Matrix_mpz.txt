@@ -1,0 +1,61 @@
+
+Matrix_mpz class:
+=================
+
+This class provides the basic functionality for basic computations
+with integer-valued quadratic forms Q.  The matrix is taken to be the
+matrix of 2Q, which is a necessarily a matrix with integer
+coefficients and even diagonal entries.  For such a matrix, we have
+
+    Basic Tests:
+      IsSquare() 
+      IsSymmetric() 
+      IsQuadraticForm() 
+      
+    Basic Computations:
+      GetTranspose() 
+      Determinant() 
+      Adjoint()
+      QFLevel()
+
+    Local Integral Operations:
+      GetLocalNormal(p) -- returns the (integral) local normal form of Q at p
+      Local_Density(p, m) -- see routine
+      Local_Primitive_Density(p, m)  -- see routine
+      LocalConstantCp(p, T)  -- see routine
+      IsStable(p, T)  -- see routine
+
+    Local Rational Operations:
+      LocalDiagonal(p) -- ???
+      HasseInvariant(p) -- The Hasse invariant of Q at p
+      IsAnisotropic(p)  -- Tests whether Q is anisotropic at p
+      IsIsotropic(p)  -- Tests whether Q is isotropic at p
+      AnisotropicPrimes() -- returns a vector of anisotropic primes
+      RationalDiagonal() -- Diagonal matrix rationally equivalent to Q
+
+    Other:
+      ComputeTheta(precision) -- Computes the theta function to some precision
+      SiegelProduct(u) -- Computes the product of all local densities at u.
+      GetEisensteinLowerBound(...) -- Finds (and stores) the Eisenstein lower bound.
+      NumericalEisensteinLowerBound(...) -- Estimates the Eisenstien
+					 lower bound from the first few Eisenstein coefficiemts
+    Import:
+      GetMagmaEisSeries(...)
+      GetMagmaThetaSeries(...)
+
+    Symmetric operations:
+      SwapSymmetric(i, j)
+      MultiplySymmetric(c,i)
+      DivideSymmetric(c, i)
+      AddSymmetric(c, i, j)
+
+
+In Python, this Matrix_mpz class is broken into 3 other classes:
+
+   MatrixMPZ -- integer matrix functionality
+   QuadraticForm -- quadratic form functionality
+   QuadraticLocalNormalForm -- an intermediate class used to store the
+			       local normal form of Q at p as an upper
+			       triangular integer matrix (for Q, not 2Q)!
+
+where the last two both have MatrixMPZ as a superclass.  
