@@ -21,6 +21,10 @@ syntax: glob
 # Object files made from compiling C/C++ source code
 *.o
 
+# Compiled binary file
+*/290_Project__C++_and_SAGE/C/Ver13.2__3-5-2007/main
+
+
 ## ---------------------------------------------------------
 
 # Hide Doxygen output files, but not the setup files

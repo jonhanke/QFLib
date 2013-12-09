@@ -38,12 +38,14 @@ OBJ = distributed_class.o  misc_utilities.o  cholesky_distributed.o \
 DOXYGEN_DIR=Docs/Doxygen_Docs
 
 #SAGE_DIR=~/public_html/SAGE/SAGE-qf-Devel__2005-05-30
-SAGE_DIR=~/public_html/SAGE/Current_Doxygen_Docs
+#SAGE_DIR=~/public_html/SAGE/Current_Doxygen_Docs
+WEBDOCS_DIR=~/public_html/QFLIB_Doxygen_Docs
 
 
 
-
-all: main docs client client_new
+all: main docs
+## TO DO: Commented out for now -- Deal with this client code later (2013-12-09)
+##all: main docs client client_new
 
 
 Matrix_mpz_main: Matrix_mpz_main.o  Makefile  temp_clean  $(OBJ)
@@ -134,8 +136,8 @@ temp_clean:
 
 docs: 
 	#doxygen $(DOXYGEN_DIR)/Doxyfile
-	rm -rf $(SAGE_DIR)
-	cp -rp $(DOXYGEN_DIR) $(SAGE_DIR)
+	rm -rf $(WEBDOCS_DIR)
+	cp -rp $(DOXYGEN_DIR) $(WEBDOCS_DIR)
 
 
 clean:

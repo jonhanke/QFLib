@@ -1656,7 +1656,7 @@ bool Representability::_ReadSquarefree(const QF_Datafiles & qf_data) {
   // Check if we can read the exceptions
   ifstream excep_stream;
   excep_stream.open(excep_filename.c_str());
-  if (excep_stream == false)
+  if (excep_stream.fail())
     return false;  // Read failed... =(
 
   /*
@@ -1687,7 +1687,7 @@ bool Representability::_ReadSquarefree(const QF_Datafiles & qf_data) {
   // Write the (square-free) exceptions
   ifstream overflow_stream;
   overflow_stream.open(overflow_filename.c_str());
-  if (excep_stream == false)
+  if (overflow_stream.fail())
     return false;  // Read failed... =(
 
   // Read the (square-free) overflows, if we can.
