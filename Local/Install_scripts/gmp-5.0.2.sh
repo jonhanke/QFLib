@@ -1,11 +1,11 @@
 #!/bin/bash
 
-####################################
-##  Install script for Pari-2.1.7 ##
-####################################
+###################################
+##  Install script for GMP-5.0.2 ##
+###################################
 
 ## Uncompress the Tarball
-tar -zxvf ../Tarballs/gmp-5.0.2.tar.bz2 -C ../Builds/
+tar -jxvf ../Tarballs/gmp-5.0.2.tar.bz2 -C ../Builds/
 
 ## Get the absolute (dereferenced) pathname of the "Local" directory
 cd ..
