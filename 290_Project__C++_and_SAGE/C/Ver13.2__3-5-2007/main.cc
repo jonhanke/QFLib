@@ -20,8 +20,6 @@
 
 #include <time.h>
 #include <string.h>
-//#include <stdio.h>
-//#include <stdlib.h>
 
 
 // Additional Libraries from the Older Project...
@@ -42,23 +40,15 @@
 
 using namespace std;
 
-namespace JON { }
-using namespace JON;
-
-
 
 
 //////////////////////////////////////////
 // Global constants used to store files //
 //////////////////////////////////////////
 
-// Says where the list of primes are stored
-//const char PRIME_DIR[] = "../../Primes/";
-//const char PRIME_DIR[] = "/home/postdoc/jonhanke/290_Project/Primes/";
 
-// Says where the project is stored
-//const char ABSOLUTE_PROJECT_PATH[] = "/ytmp/QF_Project_Data/";   // This is for Austin and grid
-extern const char ABSOLUTE_PROJECT_PATH[22] = "/tmp/QF_Project_Data/";   // This is for the gridX machines
+// Says where the project data is stored
+extern const char ABSOLUTE_PROJECT_PATH[25] = "/tmp/QFLIB_Project_Data/";
 
 
 
@@ -73,8 +63,6 @@ extern const char ABSOLUTE_PROJECT_PATH[22] = "/tmp/QF_Project_Data/";   // This
 // Put the headers here!
 #include "GMP_class_extras/mpz_class_extras.h"
 #include "Matrix_mpz/Matrix_mpz.h"
-
-//#include "Boolean_Ternary_Theta_Class/boolean_ternary_theta_class.h"    // <------- This is on it's way out!
 
 #include "New_Boolean_Theta_Class/boolean_theta_class.h"  
 
@@ -109,34 +97,18 @@ extern const char ABSOLUTE_PROJECT_PATH[22] = "/tmp/QF_Project_Data/";   // This
 #include "Number_Checking/checknums.h"
 #include "Number_Checking/squarefreelist.h"
 
-
-/*
-// These are "ad hoc" routines which check representability of ternary forms.
-// (They need to be updated and consolidated!)
-#include "Ternary_Stuff/local_representability.h"
-#include "Ternary_Stuff/new_local_representability.h"
-#include "Ternary_Stuff/scraps3.h"
-*/
-
-
 #include "local_condition_class.h"
 
 
 
-
-
-/*
-#include "Number_Checking/checking.h"
-#include "scraps4.h"
-*/
 
 #include "scraps5.h"  // Tests the modified densities on imprimitive forms!
 
 
 
 #include "qf_project_class.h"
-#include "qf_datafiles_class.h" // I think this last one is unnecessary now, since it's included (and needs) QF_Project
-#include "representability.h"   // I think this last one is unnecessary now, since it's included (and needs) QF_Project
+#include "qf_datafiles_class.h"
+#include "representability.h"  
 
 
 
@@ -144,85 +116,15 @@ extern const char ABSOLUTE_PROJECT_PATH[22] = "/tmp/QF_Project_Data/";   // This
 // #include "new_scraps.h"  
 
 
-
 #include "power_series.h"
-
 #include "local_checking_stats.h"
-
-
-
-
-
-
-
-/*
-// Put the real routines here
-//#include "misc_utilities.cc"
-#include "vec_utils.cc"
-#include "file_stuff.cc"
-#include "primelist.cc"
-#include "checknums.cc"
-#include "squarefreelist.cc"
-#include "readmagmaseries.cc"
-//#include "maketheta.cc"
-#include "maketheta_small.cc"
-
-//#include "more_scraps.cc"  --  What happened to this? =|
-
-
-//#include "anisoprimelist.cc"  // This includes all of the old local density libraries
-
-
-#include "local_representability.cc"
-#include "new_local_representability.cc"
-//#include "scraps3.cc"
-#include "checking.cc"
-
-#include "local_condition_class.cc"
-
-#include "more_local.cc"
-#include "more_local__tests.cc"
-
-#include "scraps4.cc"
-*/
-
-
-/*
-#include "boolean_theta_class__methods.cc"
-#include "boolean_theta_class__distributed_methods2.cc"
-#include "boolean_theta_class__distributed_methods_new.cc"
-#include "distributed_theta__client_more.cc"
-*/
-
-//#include "boolean_theta_class.h"
-
-
-//#include "Misc_Tests.cc"
-
-
 #include "misc_primes.h"
-
-
-
-
-
-
-/*
-// These are still in development
-#include "ternary_qf_class.cc"          // <------ Are we even using this anymore??? =|   (moved to folder XXX_UNUSED)
-*/
-
-/*  THESE ARE NOT USED FOR NOW...  
-#include "Ternary_Exceptions/Ternary_Exceptions.h"           // (moved to folder XXX_UNUSED)
-#include "Quaternary_Exceptions/Quaternary_Exceptions.h"     // This is included in representability.cc!
-*/
 
 
 
 // PARI Stuff:
 // -----------
 #include <pari.h>    // BEWARE: Namespace conflicts!!!
-
 #include "Matrix_mpz/PARI.cc"   // This has the conversion routine! =)
 #include "Matrix_mpz/Theta.cc"   // WARNING: The "Theta.h" file is included above, and does *not* include this!
 
@@ -338,53 +240,15 @@ int main(int argc, char *argv[])
 
 
 
-  // =================================================================================================================
-
-
-
-
-  /*
-  Matrix_mpz M3(3,3);
-  M3(1,1) = 1;
-  M3(1,2) = 2;
-  M3(1,3) = 3;
-  M3(2,1) = 4;
-  M3(2,2) = 5;
-  M3(2,3) = 6;
-  M3(3,1) = 7;
-  M3(3,2) = 8;
-  M3(3,3) = 9;
-
-  Matrix_mpz N3(4,4);
-  N3 = PARI__to__Matrix_mpz(Matrix_mpz__to__PARI(M3));
-  cout << N3 << endl;
-
-  exit(1);
-  */
-
-
-
-
   // ================================== Reading in the primes =======================================
   
 
+  // Load in the initial primefile
+  Use_Next_Primefile();
   
-  // Set the file with all of the primes:
-  // ------------------------------------
-  //prime_file = "primes_lt_1000000.txt";
-  //prime_file = "primelist_upto_15millionth_prime.txt";
-  //prime_file = "primelist_upto_40millionth_prime.txt";
-  string prime_file = CL_prime_filename;   // Get the filename from the command line! =)
-
-
-
   // Note: Since a long has 4 bytes, it can store numbers up to 2^24 = 4,294,967,296
   // Our largest prime is less than 15 million, so we only need the mpz_class precision 
   // for the square-free numbers. =)
-
-
-  // Big list of primes
-  vector<long> Big_Prime_List;
 
 
 

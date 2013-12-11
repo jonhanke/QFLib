@@ -838,7 +838,7 @@ PowerSeries<mpz_class> Matrix_mpz::GetMagmaThetaSeries(const string & Theta_Dir,
 
 string Matrix_mpz::_GetMagmaComputation(const string & Filename_fragment, const string & Client_Scriptname, const string & var_string) const {
 
-  extern const char ABSOLUTE_PROJECT_PATH[22];
+  extern const char ABSOLUTE_PROJECT_PATH[25];
 
 
   // TO DO: The remote directory is assumed to exist, but we should really check/generate it!
