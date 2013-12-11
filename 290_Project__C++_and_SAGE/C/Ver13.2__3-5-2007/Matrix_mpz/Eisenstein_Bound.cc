@@ -838,7 +838,7 @@ PowerSeries<mpz_class> Matrix_mpz::GetMagmaThetaSeries(const string & Theta_Dir,
 
 string Matrix_mpz::_GetMagmaComputation(const string & Filename_fragment, const string & Client_Scriptname, const string & var_string) const {
 
-  extern const char ABSOLUTE_PROJECT_PATH[23];
+  extern const char ABSOLUTE_PROJECT_PATH[22];
 
 
   // TO DO: The remote directory is assumed to exist, but we should really check/generate it!
@@ -854,7 +854,8 @@ string Matrix_mpz::_GetMagmaComputation(const string & Filename_fragment, const 
 
   // Check for the existence of a temporary directory, and make it if necessary
   if (DirectoryExists(temp_dir) == false) {
-    command_string = "mkdir " + temp_dir;
+    //command_string = "mkdir " + temp_dir;
+    command_string = "cp -r ../../QF_Project_Data/__Temp_MAGMA_Computations " + temp_dir;
     system(command_string.c_str());
   }
 

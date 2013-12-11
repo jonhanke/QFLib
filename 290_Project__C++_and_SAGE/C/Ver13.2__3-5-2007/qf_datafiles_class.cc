@@ -2,7 +2,7 @@
 // Constructor to make a project directory system (if it doesn't exist) 
 QF_Datafiles::QF_Datafiles(const string & projectname) {
 
-  extern const char ABSOLUTE_PROJECT_PATH[23];
+  extern const char ABSOLUTE_PROJECT_PATH[22];
 
   // Make the project directory name
   char absolute_project_path[300];

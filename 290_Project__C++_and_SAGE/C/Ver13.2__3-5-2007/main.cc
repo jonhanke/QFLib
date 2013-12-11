@@ -13,6 +13,7 @@
 #include <fstream>
 #include <math.h>
 #include <stdlib.h>   // For ultoa() in Matrix_mpz::_GetEisData()
+#include <cstdlib>
 
 #include <valarray>
 
@@ -52,11 +53,12 @@ using namespace JON;
 //////////////////////////////////////////
 
 // Says where the list of primes are stored
-const char PRIME_DIR[] = "/home/postdoc/jonhanke/290_Project/Primes/";
+//const char PRIME_DIR[] = "../../Primes/";
+//const char PRIME_DIR[] = "/home/postdoc/jonhanke/290_Project/Primes/";
 
 // Says where the project is stored
 //const char ABSOLUTE_PROJECT_PATH[] = "/ytmp/QF_Project_Data/";   // This is for Austin and grid
-extern const char ABSOLUTE_PROJECT_PATH[23] = "/ztmp/QF_Project_Data/";   // This is for the gridX machines
+extern const char ABSOLUTE_PROJECT_PATH[22] = "/tmp/QF_Project_Data/";   // This is for the gridX machines
 
 
 
@@ -198,9 +200,9 @@ extern const char ABSOLUTE_PROJECT_PATH[23] = "/ztmp/QF_Project_Data/";   // Thi
 //#include "Misc_Tests.cc"
 
 
+#include "misc_primes.h"
 
-// Big list of primes
-vector<long> Big_Prime_List;
+
 
 
 
@@ -297,7 +299,7 @@ int main(int argc, char *argv[])
   // Read the command line arguments:  
   //      0 = "./main"??
   //      1 = project_name 
-  //      2 = prime_list
+  //      2 = prime_list     // Depricated -- no longer used!
   //      3 = form_file
   //      4 = Cusp_Const_Dir
   //      5 = cusp_const_prefix
@@ -308,7 +310,7 @@ int main(int argc, char *argv[])
     
   char * pEnd;
   string CL_project_name(argv[1]);
-  string CL_prime_filename(argv[2]);
+  string CL_prime_filename(argv[2]);   // Depricated -- no longer used!
   string CL_form_filename(argv[3]);
   string CL_cusp_const_dir(argv[4]);
   string CL_cusp_const_prefix(argv[5]);
@@ -330,7 +332,7 @@ int main(int argc, char *argv[])
     
   // DIAGNOSTIC  
   cout << "   Read in CL_project_name as: " << CL_project_name << endl;
-  cout << " Read in CL_prime_filename as: " << CL_prime_filename << endl;
+  cout << " Read in (but not using) CL_prime_filename as: " << CL_prime_filename << endl;
   cout << "           Read the form # as: " << form_number << endl;
   cout << endl;
 
@@ -381,36 +383,8 @@ int main(int argc, char *argv[])
   // for the square-free numbers. =)
 
 
-
-  
-  // Read in a list of primes:                                    // Note: These are needed for representability.h
-  // -------------------------
-  cout << " Starting to read the primes: " << endl;
-  cout << " ---------------------------- " << endl;
-  PrintTime();
-
-
-  char prime_filename[200]; 
-  sprintf(prime_filename, "%s%s", PRIME_DIR, prime_file.c_str());   
-
-
-  /*
-  // DIAGNOSTIC
-  cout << "  prime_file = " << prime_file << endl; 
-  cout << "  prime_filename = " << prime_filename << endl; 
-  */
-
-
-  Big_Prime_List = ReadVector_long(prime_filename);
-  cout << " Read in " << Big_Prime_List.size() << " prime numbers." << endl;
-
-
-  // OUTPUT 
-  PrintHeadV(Big_Prime_List, 5);
-  PrintTailV(Big_Prime_List, 5);
-  
-  cout << " Finished reading in the primes " << endl << endl;
-  PrintTime();
+  // Big list of primes
+  vector<long> Big_Prime_List;
 
 
 
