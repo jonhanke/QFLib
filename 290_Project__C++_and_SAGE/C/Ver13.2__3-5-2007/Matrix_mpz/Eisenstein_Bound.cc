@@ -548,15 +548,17 @@ PowerSeries<mpq_class> Matrix_mpz::_GetEisData(const string & Eis_Dir, const uns
 }
 
 
+
+
 void Matrix_mpz::_ComputeEisData(const string & EisFilename, const unsigned long Eis_precision) const {
 
   // Write the file which we send to Magma:
   // --------------------------------------
-  char FormFilename[100] = "current_form.magma";
+  string FormFilenameStr("current_form.magma");
 
   // Try to open the form file
   ofstream formfile;
-  formfile.open(FormFilename, ios::out);
+  formfile.open(FormFilenameStr.c_str(), ios::out);
 
   // Abort if we fail... =(
   if (! formfile.is_open())
@@ -581,22 +583,30 @@ void Matrix_mpz::_ComputeEisData(const string & EisFilename, const unsigned long
 
   // Send the computation to Magma:
   // ------------------------------
+  string user_machine_string = GetRemoteUserAtMachine();
+  string magma_path_string = GetRemoteMAGMAPath();
+  string remote_dir = GetRemoteTemporaryComputationsDirectory();     // The directory where it all happens on the remote host
+  string command_line;
 
   // Copy the form and precision information
-  system("scp current_form.magma jonhanke@math.princeton.edu:__290_Temp_Computations/current_form.magma");
+  command_line = string("scp current_form.magma ") + user_machine_string + string(":") + remote_dir + string("current_form.magma");
+  //command_line = string("scp current_form.magma ") + user_machine_string + string(":__290_Temp_Computations/current_form.magma");
+  system(command_line.c_str());
 
   // Make the Eisenstein series
-  system("ssh jonhanke@math.princeton.edu 'magma __290_Make_Eis.magma'");
+  command_line = string("ssh ") + user_machine_string + string(" '") + magma_path_string + string(" __290_Make_Eis.magma'");
+  system(command_line.c_str());
 
   // Copy the Eisenstein series back 
-  char copyback_command[300];
-  sprintf(copyback_command, "scp jonhanke@math.princeton.edu:__290_Temp_Computations/Current_Eis.txt %s", EisFilename.c_str());
-  system(copyback_command);
+  command_line = string("scp ") + user_machine_string + string(":") + remote_dir + string("Current_Eis.txt ") + EisFilename;
+  system(command_line.c_str());
 
   // Erase the temporary files
   system("rm -f current_form.magma");
-  system("ssh jonhanke@math.princeton.edu 'rm -f __290_Temp_Computations/current_form.magma'");
-  system("ssh jonhanke@math.princeton.edu 'rm -f __290_Temp_Computations/Current_Eis.txt'");
+  command_line = string("ssh ") + user_machine_string + string(" 'rm -f " + remote_dir + "current_form.magma'");
+  system(command_line.c_str());
+  command_line = string("ssh ") + user_machine_string + string(" 'rm -f " + remote_dir + "Current_Eis.txt'");
+  system(command_line.c_str());
 
 
   // ----------------------------------------------------------------
@@ -837,27 +847,24 @@ PowerSeries<mpz_class> Matrix_mpz::GetMagmaThetaSeries(const string & Theta_Dir,
 /////////////////////////////////////////////////////////////////////////////////
 
 string Matrix_mpz::_GetMagmaComputation(const string & Filename_fragment, const string & Client_Scriptname, const string & var_string) const {
-
-  extern const char ABSOLUTE_PROJECT_PATH[25];
-
-
-  // TO DO: The remote directory is assumed to exist, but we should really check/generate it!
-
   
   // An often used variable...
   string command_string;
   
 
-  // Set the temporary directory filename
-  string temp_dir = GetAbsolutePath(ABSOLUTE_PROJECT_PATH) + "__Temp_MAGMA_Computations/";
+  // Set the (local) temporary directory filename
+  //string temp_dir = GetAbsolutePath(ABSOLUTE_PROJECT_PATH) + "__Temp_MAGMA_Computations/";
+  string temp_dir = GetAbsoluteProjectDirPath() + "__Temp_MAGMA_Computations/";
 
 
-  // Check for the existence of a temporary directory, and make it if necessary
+  // Check for the existence of a local temporary directory, and make it if necessary
   if (DirectoryExists(temp_dir) == false) {
     //command_string = "mkdir " + temp_dir;
     command_string = "cp -r ../../QF_Project_Data/__Temp_MAGMA_Computations " + temp_dir;
+    cout << command_string << endl;
     system(command_string.c_str());
   }
+
 
   
   // Make the Magma client filename(s)
@@ -867,9 +874,11 @@ string Matrix_mpz::_GetMagmaComputation(const string & Filename_fragment, const 
   local_magma_output_filename = temp_dir + "Output__" + magma_base_filename;
 
   string remote_magma_input_filename, remote_magma_output_filename;
-  string remote_dir = "__290_Temp_Computations/";                               // The directory where it all happens on the remote host
+  string remote_dir = GetRemoteTemporaryComputationsDirectory();     // The directory where it all happens on the remote host
+  //string remote_dir = "/tmp/__QFLIB_Temporary_Magma_Computations/";     // The directory where it all happens on the remote host
   remote_magma_input_filename = remote_dir + magma_base_filename;            // The client filename on the remote host
   remote_magma_output_filename = remote_dir + "Output__" + magma_base_filename;    // The output filename on the remote host
+
 
 
   // Write the file which we send to Magma:
@@ -897,42 +906,56 @@ string Matrix_mpz::_GetMagmaComputation(const string & Filename_fragment, const 
   // -------------------------------------------
   string client_command;
   client_command = "cat " + temp_dir + "Magma_Client_Scripts/" + Client_Scriptname + " >> " + local_magma_input_filename; 
+  cout << client_command << endl;
   system(client_command.c_str());
 
 
   // Send/Receive the computation to/from Magma:
   // -------------------------------------------
+  string user_machine_string = GetRemoteUserAtMachine();
+  string magma_path_string = GetRemoteMAGMAPath();
+
+  // Create the remote directory (if necessary)
+  command_string = "ssh " + user_machine_string + " \"mkdir -p " + remote_dir  + "\"";
+  cout << command_string << endl;
+  system(command_string.c_str());
 
   // Copy the form and precision information
-  command_string = "scp " + local_magma_input_filename + " jonhanke@math.princeton.edu:" + remote_magma_input_filename;
+  command_string = "scp " + local_magma_input_filename + " " + user_machine_string + ":" + remote_magma_input_filename;
+  cout << command_string << endl;
   system(command_string.c_str());
-  //  system("scp current_form.magma jonhanke@math.princeton.edu:__290_Temp_Computations/current_form.magma");
+  //  system("scp current_form.magma jonhanke@cento:__290_Temp_Computations/current_form.magma");
 
   // Make the Eisenstein series
-  command_string = "ssh jonhanke@math.princeton.edu '/usr/finehall/bin/magma " + remote_magma_input_filename + "'";
+  command_string = "ssh " + user_machine_string + " '" + magma_path_string + " " + remote_magma_input_filename + "'";
+  cout << command_string << endl;
   system(command_string.c_str());
-  //  system("ssh jonhanke@math.princeton.edu 'magma __290_Make_Eis.magma'");
+  //  system("ssh jonhanke@cento 'magma __290_Make_Eis.magma'");
 
   // Copy the Eisenstein series back 
-  command_string = "scp jonhanke@math.princeton.edu:" + remote_magma_output_filename + " " + local_magma_output_filename;
+  command_string = "scp " +  user_machine_string + ":" + remote_magma_output_filename + " " + local_magma_output_filename;
+  cout << command_string << endl;
   system(command_string.c_str()); 
-  //  sprintf(copyback_command, "scp jonhanke@math.princeton.edu:__290_Temp_Computations/Current_Eis.txt %s", EisFilename.c_str());
+  //  sprintf(copyback_command, "scp jonhanke@cento:__290_Temp_Computations/Current_Eis.txt %s", EisFilename.c_str());
 
 
     
   // Erase the temporary files:
   // --------------------------
   command_string = "rm -f " + local_magma_input_filename;
+  cout << command_string << endl;
   system(command_string.c_str()); 
   //  system("rm -f current_form.magma");
   
-  command_string = "ssh jonhanke@math.princeton.edu 'rm -f " + remote_magma_input_filename + "'";
+  command_string = "ssh " + user_machine_string + " 'rm -f " + remote_magma_input_filename + "'";
+  cout << command_string << endl;
   system(command_string.c_str()); 
-  //  system("ssh jonhanke@math.princeton.edu 'rm -f __290_Temp_Computations/current_form.magma'");
+  //  system("ssh jonhanke@cento 'rm -f __290_Temp_Computations/current_form.magma'");
 
-  command_string = "ssh jonhanke@math.princeton.edu 'rm -f " + remote_magma_output_filename + "'";
+  command_string = "ssh " + user_machine_string + " 'rm -f " + remote_magma_output_filename + "'";
+  cout << command_string << endl;
   system(command_string.c_str()); 
-  //  system("ssh jonhanke@math.princeton.edu 'rm -f __290_Temp_Computations/Current_Eis.txt'");
+  //  system("ssh jonhanke@cento 'rm -f __290_Temp_Computations/Current_Eis.txt'");
   
 
 

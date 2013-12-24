@@ -16,10 +16,8 @@ QF_Project::QF_Project(const string & projectname, const string & filename,
 
 
   // Make the form list filename  --  "~/QF_Project_Data/projectname/projectname__form_list.txt"
-  string absolute_form_list_filename, absolute_cusp_const_dir;
+  string absolute_form_list_filename;
   absolute_form_list_filename =  Project_Dir + projectname + "__form_list.txt";
-  absolute_cusp_const_dir =  Project_Dir + "Cuspidal_Constants/";
-
 
   // Make the form list file if there isn't one in the project directory 
   if (FileExists(absolute_form_list_filename) == false) {
@@ -38,17 +36,26 @@ QF_Project::QF_Project(const string & projectname, const string & filename,
 
 
   // Make the Cuspidal Constant Directory if there isn't one in the project directory 
-  if (FileExists(absolute_cusp_const_dir) == false) {
+  string absolute_cusp_const_dir;
+  absolute_cusp_const_dir =  Project_Dir + "Cuspidal_Constants/";
+  if (DirectoryExists(absolute_cusp_const_dir) == false) {
     
-    if ((cusp_const_dir == "") || (FileExists(GetAbsolutePath(cusp_const_dir)) == false)) {
-      cout << "Error in QF_Project Cosntructor:  Cusp_Const_Dir doesn't make sense!  Using the directory " << GetAbsolutePath(cusp_const_dir) << endl;
-      assert(0==1);
-    } else  {                        
-      string command_line;
-      command_line = "cp -rp " + GetAbsolutePath(cusp_const_dir) + " " + absolute_cusp_const_dir;
-      system(command_line.c_str());
-    }   
-
+    // Generate the Cuspidal_Constants project directory
+    string command_line = string("mkdir ") + absolute_cusp_const_dir;
+    system(command_line.c_str()); 
+    
+    // Copy the given directory to the project directory of cuspidal constants if we can
+    if (cusp_const_dir != "") {
+      if (DirectoryExists(GetAbsolutePath(cusp_const_dir)) == false) {
+	cout << "Error in QF_Project Constructor:  Cusp_Const_Dir doesn't make sense!" << endl;
+	assert(0==1);
+      } else  {                        
+	string command_line;
+	command_line = "cp -rp " + GetAbsolutePath(cusp_const_dir) + " " + absolute_cusp_const_dir;
+	cout << "Copying the given Cusp_Const_Dir to the project directory Cuspidal_Constants/" << endl;
+	system(command_line.c_str());
+      }   
+    }
   }
 
 

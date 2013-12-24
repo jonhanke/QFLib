@@ -14,13 +14,6 @@ void Use_Next_Primefile() {
     associated primefile to the vector<long> Big_Prime_List.
   */
 
-  // Declare the external global variables relating to the primes
-  extern const char PRIME_DIR[14];
-  extern const string PRIMEFILE_LIST[2];
-  extern const long NUMBER_OF_PRIMEFILES;
-  extern long PRIMEFILE_INDEX;
-  extern vector<long> Big_Prime_List;
-
   
   // SANITY CHECK: Check that we have not exceeded the maximum allowed primefile index
   if (PRIMEFILE_INDEX >= (NUMBER_OF_PRIMEFILES - 1)) {
@@ -31,7 +24,7 @@ void Use_Next_Primefile() {
   // Increment the primefile index
   PRIMEFILE_INDEX += 1;
 
-  
+  /*  
   // Read the shell variable QFLIB_PRIMES_BASE_DIR used to locate the current project output files.
   // (This used to be hardcoded as the const string PRIME_DIR above.)
   const char * PRIMES_BASE_DIR_cstr;
@@ -43,13 +36,20 @@ void Use_Next_Primefile() {
   else {
     PRIMES_BASE_DIR_cstr = PRIME_DIR;
   }
+  */
+
+
+  cout << "Inside Use_Next_Primefile() -- step 1" << endl;  
 
   // DIAGNOSTIC
-  string PRIMES_BASE_DIR(PRIMES_BASE_DIR_cstr);
+  //string PRIMES_BASE_DIR(PRIMES_BASE_DIR_cstr);
+  string PRIMES_BASE_DIR = GetPrimesDirectory();
   cout << endl << endl;
   cout << "The current primefile directory PRIMES_BASE_DIR is: " << PRIMES_BASE_DIR;
   cout << endl << endl;
-  
+
+
+  cout << "Inside Use_Next_Primefile() -- step 2" << endl;    
     
   // Read in a list of primes:                     // Note: These are needed for representability.h
   // -------------------------
@@ -57,18 +57,31 @@ void Use_Next_Primefile() {
   cout << " ---------------------------- " << endl;
   PrintTime();
   
-  char prime_filename[200]; 
-  sprintf(prime_filename, "%s%s", PRIMES_BASE_DIR_cstr, PRIMEFILE_LIST[PRIMEFILE_INDEX].c_str());   
-  cout << "  Using prime_filename = " << prime_filename << endl;   
+  // char prime_filename[200]; 
+  //sprintf(prime_filename, "%s%s", PRIMES_BASE_DIR_cstr, PRIMEFILE_LIST[PRIMEFILE_INDEX].c_str());   
+  string prime_filename_str = PRIMES_BASE_DIR + PRIMEFILE_LIST[PRIMEFILE_INDEX];   
+  cout << "  Using prime_filename_str = " << prime_filename_str << endl;   
   
   /*
   // DIAGNOSTIC
   cout << "  prime_file = " << prime_file << endl; 
   cout << "  prime_filename = " << prime_filename << endl; 
   */
-  
-  
-  Big_Prime_List = ReadVector_long(prime_filename);
+
+
+  // Create the relevant prime file if it doesn't exist
+  if (not FileExists(prime_filename_str)) {
+    cout << "Creating the missing primefile " << PRIMEFILE_LIST[PRIMEFILE_INDEX] << endl; 
+    string command_line;
+    command_line = string("make -C ") + PRIMES_BASE_DIR + string(" ") + PRIMEFILE_LIST[PRIMEFILE_INDEX];
+    system(command_line.c_str());
+    cout << "Finished creating the missing primefile " << PRIMEFILE_LIST[PRIMEFILE_INDEX] << endl; 
+  }
+
+
+
+  // Read in the list of primes
+  Big_Prime_List = ReadVector_long(prime_filename_str.c_str());
   cout << " Read in " << Big_Prime_List.size() << " prime numbers." << endl;
   
   

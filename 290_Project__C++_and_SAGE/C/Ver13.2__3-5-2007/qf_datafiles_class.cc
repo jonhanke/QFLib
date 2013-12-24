@@ -2,74 +2,78 @@
 // Constructor to make a project directory system (if it doesn't exist) 
 QF_Datafiles::QF_Datafiles(const string & projectname) {
 
-  extern const char ABSOLUTE_PROJECT_PATH[25];
+  //extern const char ABSOLUTE_PROJECT_PATH[25];
 
   // Make the project directory name
-  char absolute_project_path[300];
-  sprintf(absolute_project_path, "%s%s/", GetAbsolutePath(ABSOLUTE_PROJECT_PATH).c_str(), projectname.c_str());     // This also appends the trailing '/'. =)
+  //char absolute_project_path[300];
+  //sprintf(absolute_project_path, "%s%s/", GetAbsolutePath(ABSOLUTE_PROJECT_PATH).c_str(), projectname.c_str());     // This also appends the trailing '/'. =)
 
+
+  // Make the project directory name
+  string ABSOLUTE_PROJECT_PATH_STRING = GetAbsoluteProjectDirPath() + projectname + string("/");
+  //ABSOLUTE_PROJECT_PATH_STRING.c_str()
 
   // Check if "projectname" exists in "~/QF_Project_Data/", else create a project
-  if (DirectoryExists(absolute_project_path) == false) {
-    char command_line[400];
+  if (DirectoryExists(ABSOLUTE_PROJECT_PATH_STRING.c_str()) == false) {
+    char command_line[1000];
     
     // Make a new project directory
-    sprintf(command_line, "mkdir %s", absolute_project_path);
+    sprintf(command_line, "mkdir %s", ABSOLUTE_PROJECT_PATH_STRING.c_str());
     system(command_line);
 
     // Make a new Eis_Dir
-    sprintf(command_line, "mkdir %s%s", absolute_project_path, "Eis_Dir/");
+    sprintf(command_line, "mkdir %s%s", ABSOLUTE_PROJECT_PATH_STRING.c_str(), "Eis_Dir/");
     system(command_line);
 
     // Make a new Theta_Dir
-    sprintf(command_line, "mkdir %s%s", absolute_project_path, "Theta_Dir/");
+    sprintf(command_line, "mkdir %s%s", ABSOLUTE_PROJECT_PATH_STRING.c_str(), "Theta_Dir/");
     system(command_line);
 
     // Make a new Boolean_Theta_Dir
-    sprintf(command_line, "mkdir %s%s", absolute_project_path, "Boolean_Theta_Dir/");
+    sprintf(command_line, "mkdir %s%s", ABSOLUTE_PROJECT_PATH_STRING.c_str(), "Boolean_Theta_Dir/");
     system(command_line);
 
     // Make a new Approx_Boolean_Theta_Dir
-    sprintf(command_line, "mkdir %s%s", absolute_project_path, "Approx_Boolean_Theta_Dir/");
+    sprintf(command_line, "mkdir %s%s", ABSOLUTE_PROJECT_PATH_STRING.c_str(), "Approx_Boolean_Theta_Dir/");
     system(command_line);
 
     // Make a new Eis_Lower_Bound_Dir
-    sprintf(command_line, "mkdir %s%s", absolute_project_path, "Eis_Lower_Bound_Dir/");
+    sprintf(command_line, "mkdir %s%s", ABSOLUTE_PROJECT_PATH_STRING.c_str(), "Eis_Lower_Bound_Dir/");
     system(command_line);
 
     // Make a new Cusp_Upper_Bound_Dir
-    sprintf(command_line, "mkdir %s%s", absolute_project_path, "Cusp_Upper_Bound_Dir/");
+    sprintf(command_line, "mkdir %s%s", ABSOLUTE_PROJECT_PATH_STRING.c_str(), "Cusp_Upper_Bound_Dir/");
     system(command_line);
 
     // Make a new F4_Bound_Dir
-    sprintf(command_line, "mkdir %s%s", absolute_project_path, "F4_Bound_Dir/");
+    sprintf(command_line, "mkdir %s%s", ABSOLUTE_PROJECT_PATH_STRING.c_str(), "F4_Bound_Dir/");
     system(command_line);
 
     // Make a new Eligible_Primes_Dir
-    sprintf(command_line, "mkdir %s%s", absolute_project_path, "Eligible_Primes_Dir/");
+    sprintf(command_line, "mkdir %s%s", ABSOLUTE_PROJECT_PATH_STRING.c_str(), "Eligible_Primes_Dir/");
     system(command_line);
 
     // Make a new Local_Cover_Dir
-    sprintf(command_line, "mkdir %s%s", absolute_project_path, "Local_Cover_Dir/");
+    sprintf(command_line, "mkdir %s%s", ABSOLUTE_PROJECT_PATH_STRING.c_str(), "Local_Cover_Dir/");
     system(command_line);
 
     // Make a new Exceptions_Dir
-    sprintf(command_line, "mkdir %s%s", absolute_project_path, "Exceptions_Dir/");
+    sprintf(command_line, "mkdir %s%s", ABSOLUTE_PROJECT_PATH_STRING.c_str(), "Exceptions_Dir/");
     system(command_line);
 
     // Make a new Overflows_Dir
-    sprintf(command_line, "mkdir %s%s", absolute_project_path, "Overflows_Dir/");
+    sprintf(command_line, "mkdir %s%s", ABSOLUTE_PROJECT_PATH_STRING.c_str(), "Overflows_Dir/");
     system(command_line);
 
     // Make a new Ternary_Exceptions_Dir
-    sprintf(command_line, "mkdir %s%s", absolute_project_path, "Ternary_Exceptions_Dir/");
+    sprintf(command_line, "mkdir %s%s", ABSOLUTE_PROJECT_PATH_STRING.c_str(), "Ternary_Exceptions_Dir/");
     system(command_line);
 
   }
 
 
   // Set the absolute directory names
-  Project_Dir = absolute_project_path;
+  Project_Dir = ABSOLUTE_PROJECT_PATH_STRING;
 
   Eis_Dir = Project_Dir + "Eis_Dir/";
   Theta_Dir = Project_Dir + "Theta_Dir/";

@@ -10,7 +10,7 @@ main: sieve2310_64bit.o
 	gcc $(CXXFLAGS) -I /usr/local/include -I /. -L /usr/local/lib  \
 		-lm sieve2310_64bit.o -o sieve -O2
 
-primes15: main
+primelist_upto_15millionth_prime.txt: main
 	echo "Making the first 15 million primes...";
 	echo "  Started at: ";
 	date;
@@ -18,7 +18,7 @@ primes15: main
 	echo "  Finished at: ";
 	date	
 
-primes40: main
+primelist_upto_40millionth_prime.txt: main
 	echo "Making the first 40 million primes...";
 	echo "  Started at: ";
 	date;

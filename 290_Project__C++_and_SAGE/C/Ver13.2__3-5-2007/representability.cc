@@ -774,12 +774,6 @@ bool Representability::_ReadQuaternaryTheta(const string & quaternary_theta_file
 /////////////////////////////////////////////////////////
 void Representability::_GetEligiblePrimes(const QF_Datafiles & qf_data) {
 
-  // TO DO:
-  // *** Need to read this in somehow... ***
-  vector<long> Big_Prime_List;
-
-    
-  // --------------------------------------------
 
   /*
   // DIAGNOSTIC
@@ -959,11 +953,6 @@ double Representability::_F4PrimeIsoExact(const long p) const {
 
 void Representability::_ComputeEligiblePrimes() {
 
-  // The global list of primes we can use. =)
-  // (Declared in main.cc)
-  extern const vector<long> Big_Prime_List;  
-
-
   // Sanity check that there are at least 100 primes is our list
   assert(100 < Big_Prime_List.size() - 1);
 
@@ -1030,8 +1019,12 @@ void Representability::_ComputeEligiblePrimes() {
 
   // ERROR TRAP:
   if (prime_ptr >= Big_Prime_List.size() - 1) {
-    cout << "ERROR in _ComputeEligiblePrimes(): We ran out of primes... =(";
-    exit(0);
+    cout << "ERROR in _ComputeEligiblePrimes(): We ran out of primes... =(" << endl;
+    cout << "    Trying to use a larger list of primes." << endl;
+
+    // Try to use the next prime file and repeat the computation
+    Use_Next_Primefile();
+    _ComputeEligiblePrimes();
   }                                                                                                        
 
 
@@ -1260,7 +1253,7 @@ double Representability::_Upper_bound_for_eligible_numbers() const {
 
   // The global list of primes we can use. =)
   // (Declared in main.cc)
-  extern const vector<long> Big_Prime_List;  
+  //extern const vector<long> Big_Prime_List;  
 
 
 

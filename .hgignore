@@ -44,6 +44,9 @@ syntax: glob
 # Hide the large prime list files
 */Primes/primelist_upto_*
 
+# Hide the prime sieve executable
+*/Primes/sieve
+
 # Hide the Local directory information that is not an install file or a source tarball
 *Local/bin/*
 *Local/include/*

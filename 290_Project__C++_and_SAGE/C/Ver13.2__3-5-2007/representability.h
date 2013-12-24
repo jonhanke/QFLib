@@ -17,6 +17,7 @@
 #include "qf_project_class.h"
 #include "qf_datafiles_class.h"  // I think this last one is unnecessary now, since it's included (and needs) QF_Project
 
+#include "misc_primes.h"
 
 // -----------------------------------------------------
 

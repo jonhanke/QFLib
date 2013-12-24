@@ -42,14 +42,37 @@ using namespace std;
 
 
 
-//////////////////////////////////////////
-// Global constants used to store files //
-//////////////////////////////////////////
 
 
-// Says where the project data is stored
-extern const char ABSOLUTE_PROJECT_PATH[25] = "/tmp/QFLIB_Project_Data/";
+//////////////////////////////////////////////////////////////////
+// Set Global variables related to maintaining a list of primes //
+//////////////////////////////////////////////////////////////////
 
+//const char PRIME_DIR[14] = "../../Primes/";   // This gives the default directory for where the primefiles are stored,
+
+const string PRIME_DIR_STRING = "../../Primes/";   // This gives the default directory for where the primefiles are stored,
+                                                  // which is overridden by the shell variable QFLIB_PRIME_DIR.
+
+// Define a list of space-delimited text files containing the primes up to some bound 
+// in increasing order, with the list of files in order of increasing size.
+const string PRIMEFILE_LIST[3] =
+  {
+    string("primes_lt_1000000.txt"),
+    string("primelist_upto_15millionth_prime.txt"),
+    string("primelist_upto_40millionth_prime.txt")
+  };
+const long NUMBER_OF_PRIMEFILES = 3;
+
+// Define a global index pointing to the current primefile in use from primefile_filelist
+long PRIMEFILE_INDEX = -1;
+
+  // Note: Since a long has 4 bytes, it can store numbers up to 2^24 = 4,294,967,296
+  // Our largest prime is less than 15 million, so we only need the mpz_class precision 
+  // for the square-free numbers. =)
+
+
+// The global list of primes used throughout.
+vector<long> Big_Prime_List;
 
 
 
@@ -241,14 +264,23 @@ int main(int argc, char *argv[])
 
 
   // ================================== Reading in the primes =======================================
-  
+
 
   // Load in the initial primefile
+  cout << "Before Use_Next_Primefile()" << endl;
   Use_Next_Primefile();
+  cout << "After Use_Next_Primefile()" << endl;
   
   // Note: Since a long has 4 bytes, it can store numbers up to 2^24 = 4,294,967,296
   // Our largest prime is less than 15 million, so we only need the mpz_class precision 
   // for the square-free numbers. =)
+
+
+
+  // =============================== Find/create the project data directory ===============================
+
+  // Set the external data directory variable to use throughout the program
+  string ABSOLUTE_PROJECT_PATH_STRING = GetAbsoluteProjectDirPath();
 
 
 

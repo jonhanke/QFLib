@@ -15,6 +15,20 @@ bool DirectoryExists(string filename);
 // Get the absolute path to a file/directory
 string GetAbsolutePath(string filename);
 
+// Get the absolute path to the QFLIB_Project_Data directory
+string GetAbsoluteProjectDirPath();
+
+// Get the path of the remote MAGMA executable
+string GetRemoteMAGMAPath();
+
+// Get the path of the remote temporary directory
+string GetRemoteTemporaryComputationsDirectory();
+
+// Get the user@machine for remote cuspidal computations
+string GetRemoteUserAtMachine();
+
+// Get the absolute path to the local Primes directory
+string GetPrimesDirectory();
 
 
 // ---------------------------
