@@ -267,9 +267,9 @@ int main(int argc, char *argv[])
 
 
   // Load in the initial primefile
-  cout << "Before Use_Next_Primefile()" << endl;
+  //cout << "Before Use_Next_Primefile()" << endl;
   Use_Next_Primefile();
-  cout << "After Use_Next_Primefile()" << endl;
+  //cout << "After Use_Next_Primefile()" << endl;
   
   // Note: Since a long has 4 bytes, it can store numbers up to 2^24 = 4,294,967,296
   // Our largest prime is less than 15 million, so we only need the mpz_class precision 

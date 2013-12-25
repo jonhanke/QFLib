@@ -21,7 +21,8 @@ QF_Project::QF_Project(const string & projectname, const string & filename,
 
   // Make the form list file if there isn't one in the project directory 
   if (FileExists(absolute_form_list_filename) == false) {
-    
+
+    cout << "Creating the non-existent form list file in our QFLIB project directory." << endl;    
     if ((filename == "") || (FileExists(GetAbsolutePath(filename)) == false)) {
       string command_line;
       command_line = "echo '[ ]' >  " + absolute_form_list_filename;
@@ -41,22 +42,29 @@ QF_Project::QF_Project(const string & projectname, const string & filename,
   if (DirectoryExists(absolute_cusp_const_dir) == false) {
     
     // Generate the Cuspidal_Constants project directory
+    cout << "Creating the non-existent Cuspidal_Constants in our QFLIB project directory." << endl;
     string command_line = string("mkdir ") + absolute_cusp_const_dir;
     system(command_line.c_str()); 
     
-    // Copy the given directory to the project directory of cuspidal constants if we can
-    if (cusp_const_dir != "") {
-      if (DirectoryExists(GetAbsolutePath(cusp_const_dir)) == false) {
+  }
+
+
+  // Copy the relevant cuspidal constant directory files to the project directory of cuspidal constants if we can
+  cout << "About to copy the specified cuspidal constant datafiles into our QFLIB project." << endl;
+  if (cusp_const_dir != "") {
+    if (DirectoryExists(GetAbsolutePath(cusp_const_dir)) == false) {
 	cout << "Error in QF_Project Constructor:  Cusp_Const_Dir doesn't make sense!" << endl;
 	assert(0==1);
-      } else  {                        
+    } else  {                        
 	string command_line;
-	command_line = "cp -rp " + GetAbsolutePath(cusp_const_dir) + " " + absolute_cusp_const_dir;
-	cout << "Copying the given Cusp_Const_Dir to the project directory Cuspidal_Constants/" << endl;
+	command_line = "cp -rp " + GetAbsolutePath(cusp_const_dir) + cusp_const_prefix + "*.txt" + " " + absolute_cusp_const_dir;
+	cout << "Copying the relevant Cusp_Const_Dir files to the project directory Cuspidal_Constants/" << endl;
+	//cout << command_line << endl;
 	system(command_line.c_str());
-      }   
-    }
+    }   
   }
+
+
 
 
   // Read in the forms from the datafile  -- FIX ALL OF THIS!!!
@@ -333,7 +341,7 @@ void QF_Project::Read_Exact_Forms_and_Cusp_Bounds(const string & filename, const
     ifstream datafile;
     datafile.open(new_cusp_filename.c_str(), ios::in);
     if (! datafile.is_open()) { 
-      // cout << "Error opening file " << new_cusp_filename << " for form #" << k+1 << endl;   
+        cout << "Error opening file " << new_cusp_filename << " for form #" << k+1 << endl;   
 	Cusp_Constant_List[k] = -2; 
     }
     else {

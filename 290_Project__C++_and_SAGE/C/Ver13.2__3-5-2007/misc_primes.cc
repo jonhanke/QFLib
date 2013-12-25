@@ -39,7 +39,6 @@ void Use_Next_Primefile() {
   */
 
 
-  cout << "Inside Use_Next_Primefile() -- step 1" << endl;  
 
   // DIAGNOSTIC
   //string PRIMES_BASE_DIR(PRIMES_BASE_DIR_cstr);
@@ -49,7 +48,6 @@ void Use_Next_Primefile() {
   cout << endl << endl;
 
 
-  cout << "Inside Use_Next_Primefile() -- step 2" << endl;    
     
   // Read in a list of primes:                     // Note: These are needed for representability.h
   // -------------------------

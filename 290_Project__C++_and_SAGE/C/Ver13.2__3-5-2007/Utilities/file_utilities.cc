@@ -267,19 +267,19 @@ string GetPrimesDirectory() {
     primes_dir_path = string(std::getenv("QFLIB_local_primes_dir"));
   }
 
-  cout << "Inside GetPrimesDirectory() -- step 1" << endl;  
+  //cout << "Inside GetPrimesDirectory() -- step 1" << endl;  
 
   // Set a default path if no shell variable is found
   string default_string("../../Primes/");
-  cout << "Inside GetPrimesDirectory() -- step 1a" << endl;  
+  //cout << "Inside GetPrimesDirectory() -- step 1a" << endl;  
   if (primes_dir_path.empty()) {
-    cout << "Inside GetPrimesDirectory() -- step 1b" << endl;  
+    //cout << "Inside GetPrimesDirectory() -- step 1b" << endl;  
     cout << "Oops!  There is no QFLIB_local_primes_dir shell variable to use -- trying the default setting" << endl;
     cout << "    Using QFLIB_local_primes_dir = " << default_string << endl;
     primes_dir_path = default_string;
   }
 
-  cout << "Inside GetPrimesDirectory() -- step 2" << endl;  
+  //cout << "Inside GetPrimesDirectory() -- step 2" << endl;  
   
   // Return the remote temporary computations directory path
   return GetAbsolutePath(primes_dir_path);

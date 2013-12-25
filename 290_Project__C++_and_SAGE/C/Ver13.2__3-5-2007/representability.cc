@@ -7,6 +7,11 @@ Representability::Representability(const Matrix_mpz & QQ, const double & cusp_co
   // Sanity Check
   assert( (type == "uniform") || (type == "minimal"));
 
+  // SANITY CHECK: Is the cusp_constant >= 0?
+  cout << "Checking if the given cusp constant " << cusp_const << " is >= 0." << endl;
+  assert(cusp_const >= 0.0);
+
+
   // Important pre-initialization to detect errors
   _max_num_prime_factors = -1;
 
@@ -40,6 +45,11 @@ Representability::Representability(const QF_Datafiles & qf_data, const Matrix_mp
 
   // Sanity Check
   assert( (type == "uniform") || (type == "minimal"));
+
+  // SANITY CHECK: Is the cusp_constant >= 0?
+  cout << "Checking if the given cusp constant " << cusp_const << " is >= 0." << endl;
+  assert(cusp_const >= 0.0);
+
 
   // Important pre-initialization to detect errors
   _max_num_prime_factors = -1;
